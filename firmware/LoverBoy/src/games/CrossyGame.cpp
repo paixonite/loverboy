@@ -5,6 +5,7 @@
 // Custom RGB565 colors for crisp minimalist readability
 static const uint16_t COLOR_RIVER_WATER = 0x019B; // B1 Deep Royal blue (RGB: 0, 50, 220)
 static const uint16_t COLOR_LOG         = 0x4141; // N1 Dark Coffee brown (RGB: 80, 40, 15)
+static const uint16_t COLOR_LOG_DIVIDER = 0x2080; // Dark wood groove divider between log grid cells (RGB: 32, 16, 0)
 static const uint16_t COLOR_CAR         = TFT_RED;
 static const uint16_t COLOR_TRUCK       = 0x90DF; // Vibrant purple for buses/trucks
 static const uint16_t COLOR_TRAIN       = TFT_CYAN;
@@ -22,6 +23,31 @@ CrossyGame::CrossyGame(TFT_eSPI* tft_display, SoundManager* sound_manager, Input
 
 uint16_t CrossyGame::getLaneBgColor(LaneType type) const {
     return (type == LANE_RIVER) ? COLOR_RIVER_WATER : TFT_BLACK;
+}
+
+int CrossyGame::findLogIndexAt(int rowIdx, float px) const {
+    const Lane& lane = lanes[rowIdx];
+    if (lane.type != LANE_RIVER) return -1;
+    for (int i = 0; i < lane.obsCount; i++) {
+        float logLeft = lane.obsX[i];
+        float logRight = logLeft + lane.obsWidth;
+        if (px + PLAYER_W - 3.0f > logLeft && px + 3.0f < logRight) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int CrossyGame::findLogGradeAt(int rowIdx, int logIdx, float px) const {
+    const Lane& lane = lanes[rowIdx];
+    int numGrids = lane.obsWidth / COL_WIDTH;
+    if (numGrids <= 1) return 0;
+    int grade = (int)round((px - 2.0f - lane.obsX[logIdx]) / (float)COL_WIDTH);
+    return constrain(grade, 0, numGrids - 1);
+}
+
+float CrossyGame::getLogGradeX(int rowIdx, int logIdx, int grade) const {
+    return lanes[rowIdx].obsX[logIdx] + grade * COL_WIDTH + 2.0f;
 }
 
 void CrossyGame::resetGame() {
@@ -184,7 +210,16 @@ void CrossyGame::generateLane(int rowIdx, int worldDist, const Lane* adjacentLan
         }
     }
     else if (chosenType == LANE_RIVER) {
-        lane.obsWidth = 54 - (effDist * 12) / 60; // 54px in early game down to 42px in late game
+        // Logs have a fixed grid of 2 or 3 cells in length (16px per grade -> 32px or 48px)
+        int logGrids = 3;
+        if (effDist < 15) {
+            logGrids = (random(0, 100) < 20) ? 2 : 3;
+        } else if (effDist < 40) {
+            logGrids = (random(0, 100) < 50) ? 2 : 3;
+        } else {
+            logGrids = (random(0, 100) < 70) ? 2 : 3;
+        }
+        lane.obsWidth = logGrids * COL_WIDTH;
         lane.obsColor = COLOR_LOG;
         lane.obsCount = 3;
 
@@ -272,8 +307,15 @@ void CrossyGame::handleInputPlaying() {
             }
             targetX = snappedCol * COL_WIDTH + 2;
         } else {
-            // Landing on a River lane: preserve horizontal alignment
-            targetX = constrain(playerX, 2.0f, (float)(DISPLAY_WIDTH - PLAYER_W - 2));
+            // Landing on a River lane: snap chicken to the nearest grid cell of the floating log
+            int logIdx = findLogIndexAt(targetRow, playerX);
+            if (logIdx >= 0) {
+                int grade = findLogGradeAt(targetRow, logIdx, playerX);
+                targetX = getLogGradeX(targetRow, logIdx, grade);
+            } else {
+                // Hopping into open water (collision handler will end game)
+                targetX = playerX;
+            }
         }
     } else {
         // Horizontal hop (Left / Right) on current lane
@@ -286,9 +328,18 @@ void CrossyGame::handleInputPlaying() {
             }
             targetX = targetCol * COL_WIDTH + 2;
         } else {
-            float nextX = playerX + dCol * COL_WIDTH;
-            if (nextX < 0.0f || nextX > DISPLAY_WIDTH - PLAYER_W) return;
-            targetX = nextX;
+            // Horizontal hop between fixed grid cells on the current floating log
+            int logIdx = findLogIndexAt(playerRow, playerX);
+            if (logIdx >= 0) {
+                int curGrade = (int)round((playerX - 2.0f - lanes[playerRow].obsX[logIdx]) / (float)COL_WIDTH);
+                int targetGrade = curGrade + dCol;
+                targetX = getLogGradeX(playerRow, logIdx, targetGrade);
+                if (targetX < 0.0f || targetX > DISPLAY_WIDTH - PLAYER_W) return;
+            } else {
+                float nextX = playerX + dCol * COL_WIDTH;
+                if (nextX < 0.0f || nextX > DISPLAY_WIDTH - PLAYER_W) return;
+                targetX = nextX;
+            }
         }
     }
 
@@ -372,9 +423,15 @@ void CrossyGame::updatePlaying() {
         }
     }
 
-    // Carry player along if standing on a River lane
+    // Carry player along if standing on a River lane, locked to the log's fixed grid cell
     if (lanes[playerRow].type == LANE_RIVER) {
-        playerX += lanes[playerRow].speed;
+        int logIdx = findLogIndexAt(playerRow, playerX);
+        if (logIdx >= 0) {
+            int grade = findLogGradeAt(playerRow, logIdx, playerX);
+            playerX = getLogGradeX(playerRow, logIdx, grade);
+        } else {
+            playerX += lanes[playerRow].speed;
+        }
     }
 
     checkCollisions();
@@ -517,6 +574,12 @@ void CrossyGame::drawLaneFull(int rowIdx) {
         for (int i = 0; i < lane.obsCount; i++) {
             int currX = (int)round(lane.obsX[i]);
             drawRectExcludingPlayer(currX, yEnt, lane.obsWidth, ENTITY_H, lane.obsColor, rowIdx);
+            if (lane.type == LANE_RIVER) {
+                int numGrids = lane.obsWidth / COL_WIDTH;
+                for (int g = 1; g < numGrids; g++) {
+                    drawRectExcludingPlayer(currX + g * COL_WIDTH, yEnt, 1, ENTITY_H, COLOR_LOG_DIVIDER, rowIdx);
+                }
+            }
             lane.obsXPrev[i] = lane.obsX[i];
         }
     }
@@ -564,6 +627,12 @@ void CrossyGame::drawLaneDelta(int rowIdx) {
 
             // Draw current obstacle block excluding player's box so the bird never flickers!
             drawRectExcludingPlayer(currX, yEnt, lane.obsWidth, ENTITY_H, lane.obsColor, rowIdx);
+            if (lane.type == LANE_RIVER) {
+                int numGrids = lane.obsWidth / COL_WIDTH;
+                for (int g = 1; g < numGrids; g++) {
+                    drawRectExcludingPlayer(currX + g * COL_WIDTH, yEnt, 1, ENTITY_H, COLOR_LOG_DIVIDER, rowIdx);
+                }
+            }
             lane.obsXPrev[i] = lane.obsX[i];
         }
     }
@@ -629,6 +698,13 @@ void CrossyGame::drawPlaying() {
 
         if (playerHoppedThisFrame && (pxCurr != pxPrev || playerRow != playerRowPrev)) {
             uint16_t oldBg = getLaneBgColor(lanes[playerRowPrev].type);
+            if (lanes[playerRowPrev].type == LANE_RIVER) {
+                // If previous position was on a river log, erase with log color to avoid blue water flicker
+                int prevLog = findLogIndexAt(playerRowPrev, playerXPrev);
+                if (prevLog >= 0) {
+                    oldBg = COLOR_LOG;
+                }
+            }
             drawRectExcludingPlayer(pxPrev, laneTopY(playerRowPrev) + 2, PLAYER_W, PLAYER_H, oldBg, playerRowPrev);
             if (lanes[playerRowPrev].type == LANE_RAIL) {
                 uint16_t prevLineCol = lanes[playerRowPrev].warningLightOn ? TFT_RED : COLOR_RAIL_LINE;

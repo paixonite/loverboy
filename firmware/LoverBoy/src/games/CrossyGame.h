@@ -87,6 +87,9 @@ private:
     // Helper methods
     int laneTopY(int row) const { return PLAYFIELD_Y + row * LANE_HEIGHT; }
     uint16_t getLaneBgColor(LaneType type) const;
+    int findLogIndexAt(int rowIdx, float px) const;
+    int findLogGradeAt(int rowIdx, int logIdx, float px) const;
+    float getLogGradeX(int rowIdx, int logIdx, int grade) const;
 
     void generateLane(int rowIdx, int worldDist, const Lane* adjacentLane);
     void shiftWorldDown();
