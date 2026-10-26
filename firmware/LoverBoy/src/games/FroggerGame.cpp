@@ -15,6 +15,9 @@ static const int BAY_X[5] = {30, 88, 146, 204, 262};
 
 FroggerGame::FroggerGame(TFT_eSPI* tft_display, SoundManager* sound_manager, InputManager* input_manager)
     : Game(tft_display, sound_manager, input_manager, "Frogger") {
+    defaultScores[0] = 15;
+    defaultScores[1] = 10;
+    defaultScores[2] = 5;
 }
 
 int FroggerGame::rowToY(int row) const {

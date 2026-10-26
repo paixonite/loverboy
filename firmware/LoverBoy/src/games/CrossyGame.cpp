@@ -16,9 +16,9 @@ static const float WRAP_SPAN = 400.0f; // 320px screen + 80px off-screen buffer
 
 CrossyGame::CrossyGame(TFT_eSPI* tft_display, SoundManager* sound_manager, InputManager* input_manager)
     : Game(tft_display, sound_manager, input_manager, "Crossy") {
-    defaultScores[0] = 45;
-    defaultScores[1] = 25;
-    defaultScores[2] = 12;
+    defaultScores[0] = 30;
+    defaultScores[1] = 20;
+    defaultScores[2] = 10;
 }
 
 uint16_t CrossyGame::getLaneBgColor(LaneType type) const {
