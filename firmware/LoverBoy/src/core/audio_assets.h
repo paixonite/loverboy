@@ -10,20 +10,27 @@
 
 // Octaves
 #define NOTE_A3   220
+#define NOTE_AS3  233  // A#3 / Bb3
 #define NOTE_C4   262
 #define NOTE_D4   294
+#define NOTE_DS4  311  // D#4 / Eb4
 #define NOTE_E4   330
 #define NOTE_F4   349
+#define NOTE_FS4  370  // F#4
 #define NOTE_G4   392
+#define NOTE_GS4  415  // G#4 / Ab4
 #define NOTE_A4   440
+#define NOTE_AS4  466  // A#4 / Bb4
 #define NOTE_B4   494
 #define NOTE_C5   523
 #define NOTE_CS5  554
 #define NOTE_D5   587
+#define NOTE_DS5  622  // D#5 / Eb5
 #define NOTE_E5   659
 #define NOTE_F5   698
 #define NOTE_G5   784
 #define NOTE_A5   880
+#define NOTE_AS5  932  // A#5 / Bb5
 #define NOTE_C6   1047
 
 
@@ -57,6 +64,33 @@ const Note MELODY_SPLASH[] = {
     {NOTE_CS5, 600}
 };
 const int MELODY_SPLASH_LENGTH = sizeof(MELODY_SPLASH) / sizeof(Note);
+
+// SoundManager appends a 20% articulation gap after each note, so every
+// duration is divided by 1.2 to make each note's full slot land exactly on the beat grid.
+#define LOVERBOY_BPM 99
+#define LOVERBOY_BEATS(b) ((int)((b) * 60000.0 / LOVERBOY_BPM / 1.2 + 0.5))
+
+// Credits: lead-vocal line of the chorus of Queen's "Good Old-Fashioned Lover Boy"
+const Note MELODY_LOVERBOY_CHORUS[] = {
+  
+    {NOTE_G4,  LOVERBOY_BEATS(2)},    // ohh
+    {NOTE_F4,  LOVERBOY_BEATS(1)},    // love
+    {REST,     LOVERBOY_BEATS(1)},    
+    {NOTE_G4,  LOVERBOY_BEATS(2)},    // ohh
+    {NOTE_AS3, LOVERBOY_BEATS(1)},    // lo
+    {NOTE_C4,  LOVERBOY_BEATS(1)},    // ver
+    {NOTE_G4,  LOVERBOY_BEATS(2)},    // boy
+    {REST,     LOVERBOY_BEATS(0.5)},  
+    {NOTE_AS4, LOVERBOY_BEATS(0.5)},  // what
+    {NOTE_GS4, LOVERBOY_BEATS(0.25)}, // are you
+    {NOTE_G4,  LOVERBOY_BEATS(0.5)},  // doing
+    {NOTE_F4,  LOVERBOY_BEATS(0.25)}, // to
+    {NOTE_DS4, LOVERBOY_BEATS(1.25)}, // night?
+    {REST,     LOVERBOY_BEATS(0.25)},  
+    {NOTE_G4, LOVERBOY_BEATS(0.5)},   // hey
+    {NOTE_D4,  LOVERBOY_BEATS(1.5)}   // boy!
+};
+const int MELODY_LOVERBOY_CHORUS_LENGTH = sizeof(MELODY_LOVERBOY_CHORUS) / sizeof(Note);
 
 
 // Sound effect for main menu navigation.

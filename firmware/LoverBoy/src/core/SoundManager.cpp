@@ -84,13 +84,14 @@ void SoundManager::loop() {
     }
 
     // Advance to next note after duration + articulation pause
-    if (elapsed > (unsigned long)(current_note_duration + pause_between_notes)) {
+    if (elapsed >= (unsigned long)(current_note_duration + pause_between_notes)) {
         _current_note_index++;
 
         if (_current_note_index >= _melody_length) {
             stop();
         } else {
-            _note_start_time = millis();
+            // Schedule from the previous slot (not millis()) so loop jitter never accumulates into tempo drift
+            _note_start_time += current_note_duration + pause_between_notes;
             startNote(_current_melody[_current_note_index].frequency);
         }
     }

@@ -206,10 +206,10 @@ void MenuManager::handleSettingsInput() {
             input->consumeAll();
             drawConfirmReset();
         } else if (selectedSettingIndex == SETTING_CREDITS) {
-            sound->play(MELODY_MENU_NAVIGATE, MELODY_MENU_NAVIGATE_LENGTH);
             currentState = MENU_STATE_CREDITS;
             input->consumeAll();
             drawSplashScreen(false);
+            sound->play(MELODY_LOVERBOY_CHORUS, MELODY_LOVERBOY_CHORUS_LENGTH); // Credits theme (Loverboy chorus)
         }
     }
 }
@@ -243,6 +243,7 @@ void MenuManager::handleConfirmResetInput() {
 
 void MenuManager::handleCreditsInput() {
     if (input->anyPressed()) {
+        sound->stop(); // Credits closed: cut the theme
         sound->play(MELODY_MENU_NAVIGATE, MELODY_MENU_NAVIGATE_LENGTH);
         currentState = MENU_STATE_SETTINGS;
         input->consumeAll();
