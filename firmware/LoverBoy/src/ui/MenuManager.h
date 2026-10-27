@@ -62,6 +62,7 @@ private:
     // --- Drawing Functions ---
     void drawSplashScreen(bool animateLogo = false);
     void updateSplashAnimation();
+    void updateCreditsAnimation();
     void drawMenu();
     void drawCarouselContent();
     void updateBatteryDisplay();

@@ -65,6 +65,7 @@ int MenuManager::update() {
             return -1;
 
         case MENU_STATE_CREDITS:
+            updateCreditsAnimation();
             handleCreditsInput();
             return -1;
     }
@@ -209,6 +210,7 @@ void MenuManager::handleSettingsInput() {
             currentState = MENU_STATE_CREDITS;
             input->consumeAll();
             drawSplashScreen(false);
+            splashStartTime = millis();
             sound->play(MELODY_LOVERBOY_CHORUS, MELODY_LOVERBOY_CHORUS_LENGTH); // Credits theme (Loverboy chorus)
         }
     }
@@ -491,6 +493,63 @@ void MenuManager::updateSplashAnimation() {
             // Font size 5 uses 8*5 = 40px height; centered with ML_DATUM gives baseY - 20 to baseY + 20.
             // With maxJumpHeight (10px), letter can reach baseY - 30.
             // Clear with generous vertical padding to fully erase prior positions.
+            int clearH = 40 + maxJumpHeight + 6;
+            int clearY = (baseY - 20) - maxJumpHeight - 3;
+            tft->fillRect(currentCursorX, clearY, letterW, clearH, TFT_BLACK);
+
+            splashCurrentOffset[i] = targetOffset;
+            tft->setTextColor(rainbowColors[i % 8], TFT_BLACK);
+            tft->setTextDatum(ML_DATUM);
+            tft->drawString(letter, currentCursorX, baseY - splashCurrentOffset[i]);
+        }
+
+        currentCursorX += letterW;
+    }
+}
+
+void MenuManager::updateCreditsAnimation() {
+    String title = "LoverBoy"; // i18n-ignore (brand name)
+    uint16_t rainbowColors[] = {
+        tft->color565(255,   0,   0), // L: R3
+        MY_ORANGE,                    // o: original MY_ORANGE
+        TFT_YELLOW,                   // v: original TFT_YELLOW
+        tft->color565(  0, 255,   0), // e: G3
+        tft->color565(  0, 100, 255), // r: B2
+        tft->color565(  0,   0, 255), // B: Pure Blue (0, 0, 255)
+        tft->color565(100,  20, 190), // o: U1
+        tft->color565(230,  30, 100)  // y: P2
+    };
+
+    unsigned long elapsed = millis() - splashStartTime;
+
+    // Continuous wave across all 8 letters, cycling every 1212 ms (~2 beats at 99 BPM)
+    const unsigned long cycleDuration = 1212;
+    const unsigned long letterStagger = 95;
+    const unsigned long jumpDuration = 200;
+    const int maxJumpHeight = 9;
+
+    unsigned long cycleTime = elapsed % cycleDuration;
+
+    tft->setTextSize(5);
+    int totalWidth = tft->textWidth(title);
+    int startCursorX = (tft->width() / 2) - (totalWidth / 2);
+    int baseY = tft->height() / 2 - 10;
+
+    int currentCursorX = startCursorX;
+    for (int i = 0; i < title.length(); i++) {
+        String letter = String(title.charAt(i));
+        int letterW = tft->textWidth(letter);
+
+        unsigned long letterStart = i * letterStagger;
+        int targetOffset = 0;
+        if (cycleTime >= letterStart && cycleTime < letterStart + jumpDuration) {
+            unsigned long jumpElapsed = cycleTime - letterStart;
+            // Sine wave arc: jumps up to maxJumpHeight and lands smoothly
+            float phase = (float)jumpElapsed / (float)jumpDuration; // 0.0 to 1.0
+            targetOffset = (int)(sin(phase * 3.14159265f) * maxJumpHeight);
+        }
+
+        if (targetOffset != splashCurrentOffset[i]) {
             int clearH = 40 + maxJumpHeight + 6;
             int clearY = (baseY - 20) - maxJumpHeight - 3;
             tft->fillRect(currentCursorX, clearY, letterW, clearH, TFT_BLACK);

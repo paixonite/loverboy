@@ -80,14 +80,14 @@ const Note MELODY_LOVERBOY_CHORUS[] = {
     {NOTE_AS3, LOVERBOY_BEATS(1)},    // lo
     {NOTE_C4,  LOVERBOY_BEATS(1)},    // ver
     {NOTE_G4,  LOVERBOY_BEATS(2)},    // boy
-    {REST,     LOVERBOY_BEATS(0.5)},  
+    {REST,     LOVERBOY_BEATS(0.2)},  
     {NOTE_AS4, LOVERBOY_BEATS(0.5)},  // what
     {NOTE_GS4, LOVERBOY_BEATS(0.25)}, // are you
     {NOTE_G4,  LOVERBOY_BEATS(0.5)},  // doing
     {NOTE_F4,  LOVERBOY_BEATS(0.25)}, // to
     {NOTE_DS4, LOVERBOY_BEATS(1.25)}, // night?
     {REST,     LOVERBOY_BEATS(0.25)},  
-    {NOTE_G4, LOVERBOY_BEATS(0.5)},   // hey
+    {NOTE_G4,  LOVERBOY_BEATS(0.5)},  // hey
     {NOTE_D4,  LOVERBOY_BEATS(1.5)}   // boy!
 };
 const int MELODY_LOVERBOY_CHORUS_LENGTH = sizeof(MELODY_LOVERBOY_CHORUS) / sizeof(Note);
