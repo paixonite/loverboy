@@ -1,5 +1,19 @@
 #include "ConfigManager.h"
 
+static constexpr uint16_t rgb565(uint8_t r, uint8_t g, uint8_t b) {
+    return ((uint16_t)(r & 0xF8) << 8) | ((uint16_t)(g & 0xFC) << 3) | (b >> 3);
+}
+
+ColorTheme ConfigManager::_activeTheme = THEME_CLASSIC;
+
+const uint16_t ConfigManager::THEME_COLORS[THEME_COUNT] = {
+    rgb565(255, 255,   0), // THEME_CLASSIC: Y3 Pure Yellow (TFT_YELLOW)
+    rgb565(  0, 180,  60), // THEME_EMERALD: G2 Emerald
+    rgb565(  0, 180, 255), // THEME_AZURE:   B5 Sky / Azure
+    rgb565(165,  30, 210), // THEME_VIOLET:  U3 Violet
+    rgb565(230,  30, 100)  // THEME_ROSE:    P2 Deep Rose
+};
+
 const unsigned long ConfigManager::SLEEP_TIMEOUTS_MS[ConfigManager::SLEEP_OPTION_COUNT] = {
     0,       // 0: OFF
     30000,   // 1: 30 seconds
@@ -14,7 +28,8 @@ ConfigManager::ConfigManager()
       _brightness(100),
       _sleepTimeoutIndex(2),
       _lastNonZeroSleepTimeoutIndex(2),
-      _language(LANG_EN) {
+      _language(LANG_EN),
+      _colorTheme(THEME_CLASSIC) {
 }
 
 void ConfigManager::begin() {
@@ -25,6 +40,7 @@ void ConfigManager::begin() {
     _brightness = prefs.getInt("brightness", 100);
     _sleepTimeoutIndex = prefs.getInt("sleep_idx", 2);
     int storedLanguage = prefs.getInt("lang", LANG_EN);
+    int storedTheme = prefs.getInt("theme", THEME_CLASSIC);
     prefs.end();
 
     if (_volume < 0) _volume = 0;
@@ -40,6 +56,9 @@ void ConfigManager::begin() {
 
     _language = (storedLanguage >= 0 && storedLanguage < LANG_COUNT) ? (Language)storedLanguage : LANG_EN;
     I18n::setLanguage(_language);
+
+    _colorTheme = (storedTheme >= 0 && storedTheme < THEME_COUNT) ? (ColorTheme)storedTheme : THEME_CLASSIC;
+    _activeTheme = _colorTheme;
 
     applyBrightness();
 }
@@ -156,6 +175,30 @@ void ConfigManager::setLanguage(Language lang) {
     prefs.begin("system_cfg", false);
     prefs.putInt("lang", _language);
     prefs.end();
+}
+
+ColorTheme ConfigManager::getColorTheme() const {
+    return _colorTheme;
+}
+
+void ConfigManager::setColorTheme(ColorTheme theme) {
+    if (theme >= THEME_COUNT) theme = THEME_CLASSIC;
+    _colorTheme = theme;
+    _activeTheme = theme;
+
+    Preferences prefs;
+    prefs.begin("system_cfg", false);
+    prefs.putInt("theme", _colorTheme);
+    prefs.end();
+}
+
+void ConfigManager::cycleColorTheme(int direction) {
+    int next = ((int)_colorTheme + direction + THEME_COUNT) % THEME_COUNT;
+    setColorTheme((ColorTheme)next);
+}
+
+uint16_t ConfigManager::getThemeColor() {
+    return THEME_COLORS[_activeTheme];
 }
 
 void ConfigManager::resetAllHighscores(const char* const gameNames[], int gameCount) {

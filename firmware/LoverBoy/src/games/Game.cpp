@@ -148,7 +148,7 @@ void Game::drawPauseScreen() {
     tft->drawRect(boxX, boxY, PAUSE_BOX_W, PAUSE_BOX_H, TFT_WHITE);
 
     tft->setTextDatum(MC_DATUM);
-    tft->setTextColor(TFT_YELLOW);
+    tft->setTextColor(ConfigManager::getThemeColor());
     tft->setTextSize(3);
     TextRenderer::draw(tft, tr(STR_PAUSED), tft->width() / 2, boxY + PAUSE_TITLE_OFFSET_Y);
 
@@ -156,6 +156,7 @@ void Game::drawPauseScreen() {
 }
 
 void Game::drawPauseOptions() {
+    uint16_t themeColor = ConfigManager::getThemeColor();
     int boxY = (tft->height() - PAUSE_BOX_H) / 2;
     int optX = (tft->width() - PAUSE_OPT_W) / 2;
 
@@ -167,14 +168,14 @@ void Game::drawPauseOptions() {
         int optY = centerY - (PAUSE_OPT_H / 2);
         bool selected = (i == pauseSelection);
 
-        // Same highlight language as the Settings rows: double-thick yellow outline
+        // Same highlight language as the Settings rows: double-thick theme outline
         tft->fillRect(optX, optY, PAUSE_OPT_W, PAUSE_OPT_H, TFT_BLACK);
         if (selected) {
-            tft->drawRoundRect(optX, optY, PAUSE_OPT_W, PAUSE_OPT_H, 4, TFT_YELLOW);
-            tft->drawRoundRect(optX + 1, optY + 1, PAUSE_OPT_W - 2, PAUSE_OPT_H - 2, 3, TFT_YELLOW);
+            tft->drawRoundRect(optX, optY, PAUSE_OPT_W, PAUSE_OPT_H, 4, themeColor);
+            tft->drawRoundRect(optX + 1, optY + 1, PAUSE_OPT_W - 2, PAUSE_OPT_H - 2, 3, themeColor);
         }
 
-        tft->setTextColor(selected ? TFT_YELLOW : TFT_WHITE);
+        tft->setTextColor(selected ? themeColor : TFT_WHITE);
         TextRenderer::draw(tft, tr(PAUSE_OPTIONS[i]), tft->width() / 2, centerY);
     }
 }
@@ -223,12 +224,13 @@ void Game::resumeFromPause() {
 
 void Game::drawTitleScreen() {
     tft->fillScreen(TFT_BLACK);
-    drawTopBar(gameName, TFT_YELLOW);
+    drawTopBar(gameName, ConfigManager::getThemeColor());
     drawTitleOptions();
     drawBottomBar(tr(STR_HINT_TITLE), TFT_WHITE);
 }
 
 void Game::drawTitleOptions() {
+    uint16_t themeColor = ConfigManager::getThemeColor();
     int optX = (tft->width() - TITLE_OPT_W) / 2;
 
     tft->setTextDatum(MC_DATUM);
@@ -239,14 +241,14 @@ void Game::drawTitleOptions() {
         int optY = centerY - (TITLE_OPT_H / 2);
         bool selected = (i == titleSelection);
 
-        // Highlight language matching Settings rows and pause menu: double-thick yellow outline
+        // Highlight language matching Settings rows and pause menu: double-thick theme outline
         tft->fillRect(optX, optY, TITLE_OPT_W, TITLE_OPT_H, TFT_BLACK);
         if (selected) {
-            tft->drawRoundRect(optX, optY, TITLE_OPT_W, TITLE_OPT_H, 4, TFT_YELLOW);
-            tft->drawRoundRect(optX + 1, optY + 1, TITLE_OPT_W - 2, TITLE_OPT_H - 2, 3, TFT_YELLOW);
+            tft->drawRoundRect(optX, optY, TITLE_OPT_W, TITLE_OPT_H, 4, themeColor);
+            tft->drawRoundRect(optX + 1, optY + 1, TITLE_OPT_W - 2, TITLE_OPT_H - 2, 3, themeColor);
         }
 
-        tft->setTextColor(selected ? TFT_YELLOW : TFT_WHITE);
+        tft->setTextColor(selected ? themeColor : TFT_WHITE);
         TextRenderer::draw(tft, tr(TITLE_OPTIONS[i]), tft->width() / 2, centerY);
     }
 }
@@ -282,7 +284,7 @@ void Game::handleInputTitle() {
 
 void Game::drawTutorialScreen() {
     tft->fillScreen(TFT_BLACK);
-    drawTopBar(tr(STR_TUTORIAL_TITLE), TFT_YELLOW);
+    drawTopBar(tr(STR_TUTORIAL_TITLE), ConfigManager::getThemeColor());
     drawTutorialContent();
     drawBottomBar(tr(STR_HINT_BACK), TFT_WHITE);
 }
@@ -389,7 +391,7 @@ void Game::resetHighscores() {
 
 void Game::drawHighscoreViewScreen() {
     tft->fillScreen(TFT_BLACK);
-    drawTopBar(tr(STR_HIGHSCORES_TITLE), TFT_YELLOW);
+    drawTopBar(tr(STR_HIGHSCORES_TITLE), ConfigManager::getThemeColor());
 
     tft->setTextSize(2);
     int startY = 55;
@@ -464,6 +466,7 @@ void Game::drawHighscoreEntryScreen() {
 }
 
 void Game::drawInitials() {
+    uint16_t themeColor = ConfigManager::getThemeColor();
     tft->setTextSize(4);
     int charSpacing = 35;
     int startX = (tft->width() / 2) - charSpacing;
@@ -476,11 +479,11 @@ void Game::drawInitials() {
         
         tft->fillRect(centerX - 15, yPos - 20, 30, 45, TFT_BLACK);
 
-        tft->setTextColor(i == currentInitialIndex ? TFT_YELLOW : TFT_WHITE);
+        tft->setTextColor(i == currentInitialIndex ? themeColor : TFT_WHITE);
         tft->drawString(String(currentInitials[i]), centerX, yPos);
         
         if (i == currentInitialIndex) {
-            tft->drawFastHLine(centerX - 14, yPos + 20, 24, TFT_YELLOW);
+            tft->drawFastHLine(centerX - 14, yPos + 20, 24, themeColor);
         }
     }
 }
@@ -554,7 +557,7 @@ void Game::drawBottomBar(const String& text, uint16_t color) {
 
 void Game::drawTutorialHeader(const char* title, int y) {
     tft->setTextDatum(TL_DATUM);
-    tft->setTextColor(TFT_YELLOW);
+    tft->setTextColor(ConfigManager::getThemeColor());
     tft->setTextSize(1);
     TextRenderer::draw(tft, title, 16, y);
 }

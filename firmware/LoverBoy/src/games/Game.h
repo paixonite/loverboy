@@ -3,6 +3,7 @@
 
 #include <TFT_eSPI.h>
 #include <Preferences.h>
+#include "../core/ConfigManager.h"
 #include "../core/SoundManager.h"
 #include "../core/InputManager.h"
 #include "../localization/Localization.h"

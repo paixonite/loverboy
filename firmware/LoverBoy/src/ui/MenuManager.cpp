@@ -10,6 +10,11 @@ static const StrId SLEEP_LABEL_IDS[ConfigManager::SLEEP_OPTION_COUNT] = {
     STR_VAL_OFF, STR_SLEEP_30S, STR_SLEEP_1M, STR_SLEEP_3M, STR_SLEEP_5M
 };
 
+// Color theme value labels, indexed like ConfigManager's ColorTheme enum
+static const StrId THEME_LABEL_IDS[ConfigManager::THEME_OPTION_COUNT] = {
+    STR_THEME_CLASSIC, STR_THEME_EMERALD, STR_THEME_AZURE, STR_THEME_VIOLET, STR_THEME_ROSE
+};
+
 MenuManager::MenuManager(TFT_eSPI* tft_display, SoundManager* sound_manager, BatteryManager* battery_manager, ConfigManager* config_manager, InputManager* input_manager)
     : tft(tft_display), sound(sound_manager), battery(battery_manager), config(config_manager), input(input_manager) {
     currentState = MENU_STATE_SPLASH;
@@ -145,6 +150,8 @@ void MenuManager::handleSettingsInput() {
     else if (input->isRepeated(BTN_ID_LEFT, 220, 130)) {
         if (selectedSettingIndex == SETTING_LANGUAGE) {
             cycleLanguage(-1);
+        } else if (selectedSettingIndex == SETTING_THEME) {
+            cycleTheme(-1);
         } else if (selectedSettingIndex == SETTING_VOLUME) {
             int newVol = config->getVolume() - 10;
             if (newVol < 0) newVol = 0;
@@ -166,6 +173,8 @@ void MenuManager::handleSettingsInput() {
     else if (input->isRepeated(BTN_ID_RIGHT, 220, 130)) {
         if (selectedSettingIndex == SETTING_LANGUAGE) {
             cycleLanguage(1);
+        } else if (selectedSettingIndex == SETTING_THEME) {
+            cycleTheme(1);
         } else if (selectedSettingIndex == SETTING_VOLUME) {
             int newVol = config->getVolume() + 10;
             if (newVol > 100) newVol = 100;
@@ -189,6 +198,8 @@ void MenuManager::handleSettingsInput() {
     if (input->wasPressed(BTN_ID_A)) {
         if (selectedSettingIndex == SETTING_LANGUAGE) {
             cycleLanguage(1);
+        } else if (selectedSettingIndex == SETTING_THEME) {
+            cycleTheme(1);
         } else if (selectedSettingIndex == SETTING_VOLUME) { // Quick Mute/Unmute toggle
             config->toggleMute();
             if (config->isMuted()) {
@@ -221,6 +232,12 @@ void MenuManager::cycleLanguage(int direction) {
     config->setLanguage((Language)next);
     sound->play(MELODY_MENU_NAVIGATE, MELODY_MENU_NAVIGATE_LENGTH);
     drawSettings(); // Full redraw: every label switches immediately
+}
+
+void MenuManager::cycleTheme(int direction) {
+    config->cycleColorTheme(direction);
+    sound->play(MELODY_MENU_NAVIGATE, MELODY_MENU_NAVIGATE_LENGTH);
+    drawSettings(); // Full redraw: applies new theme color immediately
 }
 
 void MenuManager::handleConfirmResetInput() {
@@ -258,8 +275,9 @@ void MenuManager::handleCreditsInput() {
 // =================================================================
 
 void MenuManager::drawSettings() {
+    uint16_t themeColor = ConfigManager::getThemeColor();
     tft->fillScreen(TFT_BLACK);
-    drawTopBar(tr(STR_SETTINGS_TITLE), TFT_YELLOW);
+    drawTopBar(tr(STR_SETTINGS_TITLE), themeColor);
 
     int startY = 55;
     int spacingY = 30;
@@ -293,6 +311,10 @@ void MenuManager::drawSettings() {
                 label = tr(STR_SET_LANGUAGE);
                 value = String("< ") + I18n::languageName(config->getLanguage()) + " >"; // i18n-ignore (arrows)
                 break;
+            case SETTING_THEME:
+                label = tr(STR_SET_THEME);
+                value = tr(THEME_LABEL_IDS[config->getColorTheme()]);
+                break;
             case SETTING_VOLUME:
                 label = tr(STR_SET_VOLUME);
                 value = config->isMuted() ? String(tr(STR_VAL_OFF)) : ("< " + String(config->getVolume()) + "% >");
@@ -318,17 +340,17 @@ void MenuManager::drawSettings() {
         // Clear selection box around selected configuration (pure black background)
         if (isSelected) {
             tft->fillRoundRect(boxX, y - (boxH / 2), boxW, boxH, 4, TFT_BLACK);
-            tft->drawRoundRect(boxX, y - (boxH / 2), boxW, boxH, 4, TFT_YELLOW);
-            tft->drawRoundRect(boxX + 1, y - (boxH / 2) + 1, boxW - 2, boxH - 2, 3, TFT_YELLOW);
+            tft->drawRoundRect(boxX, y - (boxH / 2), boxW, boxH, 4, themeColor);
+            tft->drawRoundRect(boxX + 1, y - (boxH / 2) + 1, boxW - 2, boxH - 2, 3, themeColor);
         }
 
         tft->setTextSize(2);
         tft->setTextDatum(ML_DATUM);
-        tft->setTextColor(isSelected ? TFT_YELLOW : TFT_WHITE);
+        tft->setTextColor(isSelected ? themeColor : TFT_WHITE);
         TextRenderer::draw(tft, label, boxX + 8, y);
 
         tft->setTextDatum(MR_DATUM);
-        tft->setTextColor(isSelected ? TFT_YELLOW : TFT_WHITE);
+        tft->setTextColor(isSelected ? themeColor : TFT_WHITE);
         TextRenderer::draw(tft, value, boxX + boxW - 8, y);
     }
 
@@ -351,7 +373,7 @@ void MenuManager::drawConfirmReset() {
 
 void MenuManager::drawMenu() {
     tft->fillScreen(TFT_BLACK);
-    drawTopBar(tr(STR_CHOOSE_GAME_TITLE), TFT_YELLOW);
+    drawTopBar(tr(STR_CHOOSE_GAME_TITLE), ConfigManager::getThemeColor());
     drawCarouselContent();
     drawBottomBar(tr(STR_HINT_MENU), TFT_WHITE);
 }
@@ -392,7 +414,7 @@ void MenuManager::drawCarouselIndicators() {
 
     for (int i = 0; i < GAME_COUNT; i++) {
         if (i == selectedGameIndex) {
-            tft->fillRoundRect(currentX, indicatorY - dotRadius, dashWidth, dotDiameter, dotRadius, TFT_WHITE);
+            tft->fillRoundRect(currentX, indicatorY - dotRadius, dashWidth, dotDiameter, dotRadius, ConfigManager::getThemeColor());
             currentX += dashWidth + gap;
         } else {
             tft->fillCircle(currentX + dotRadius, indicatorY, dotRadius, inactiveColor);

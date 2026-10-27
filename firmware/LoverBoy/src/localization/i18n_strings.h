@@ -18,11 +18,17 @@
   X(STR_SPLASH_BY,         20, "by paixonite",                  "por paixonite") \
   /* --- Settings rows (label + value must fit ~22 chars) --- */ \
   X(STR_SET_LANGUAGE,      10, "Language:",                     "Idioma:") \
+  X(STR_SET_THEME,         10, "Theme:",                        "Tema:") \
   X(STR_SET_VOLUME,        11, "Volume:",                       "Volume:") \
   X(STR_SET_BRIGHTNESS,    11, "Brightness:",                   "Brilho:") \
   X(STR_SET_AUTO_SLEEP,    11, "Auto Sleep:",                   "Suspensão:") \
   X(STR_SET_HIGHSCORES,    11, "Highscores:",                   "Recordes:") \
   X(STR_SET_CREDITS,       11, "Credits:",                      "Créditos:") \
+  X(STR_THEME_CLASSIC,     13, "< Classic >",                   "< Clássico >") \
+  X(STR_THEME_EMERALD,     13, "< Emerald >",                   "< Esmeralda >") \
+  X(STR_THEME_AZURE,       13, "< Azure >",                     "< Celeste >") \
+  X(STR_THEME_VIOLET,      13, "< Violet >",                    "< Violeta >") \
+  X(STR_THEME_ROSE,        13, "< Rose >",                      "< Rosa >") \
   X(STR_VAL_OFF,           11, "[ OFF ]",                       "[ OFF ]") \
   X(STR_VAL_RESET,         11, "[ RESET ]",                     "[ ZERAR ]") \
   X(STR_VAL_VIEW,          11, "[ VIEW ]",                      "[ VER ]") \

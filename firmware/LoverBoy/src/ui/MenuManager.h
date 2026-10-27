@@ -50,6 +50,7 @@ private:
     // Row order in the Settings list (Language first)
     enum SettingItem {
         SETTING_LANGUAGE,
+        SETTING_THEME,
         SETTING_VOLUME,
         SETTING_BRIGHTNESS,
         SETTING_AUTO_SLEEP,
@@ -77,6 +78,7 @@ private:
     int handleSelectInput();
     void handleSettingsInput();
     void cycleLanguage(int direction);
+    void cycleTheme(int direction);
     void handleConfirmResetInput();
     void handleCreditsInput();
 };
