@@ -1,6 +1,6 @@
 #include "LoverBoyCore.h"
 #include "../games/CrossyGame.h"
-#include "../games/FlappyBirdGame.h"
+#include "../games/FlappyGame.h"
 #include "../games/FroggerGame.h"
 #include "../games/GeniusGame.h"
 #include "../games/SnakeGame.h"
@@ -140,7 +140,7 @@ void LoverBoyCore::loadGame(int gameIndex) {
             currentGame = new CrossyGame(&tft, &soundManager, &inputManager);
             break;
         case 1:
-            currentGame = new FlappyBirdGame(&tft, &soundManager, &inputManager);
+            currentGame = new FlappyGame(&tft, &soundManager, &inputManager);
             break;
         case 2:
             currentGame = new FroggerGame(&tft, &soundManager, &inputManager);

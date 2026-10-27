@@ -122,7 +122,7 @@ const int MELODY_TRAIN_WARN_LENGTH = sizeof(MELODY_TRAIN_WARN) / sizeof(Note);
 
 
 // -----------------------------------------------------------------
-// 3.3 Flappy Bird Game Sounds
+// 3.3 Flappy Game Sounds
 // -----------------------------------------------------------------
 
 // Sound effect for the "flap" (bird jump).

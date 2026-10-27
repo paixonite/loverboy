@@ -1,11 +1,11 @@
-#ifndef FLAPPYBIRDGAME_H
-#define FLAPPYBIRDGAME_H
+#ifndef FLAPPYGAME_H
+#define FLAPPYGAME_H
 
 #include "Game.h"
 
-class FlappyBirdGame : public Game {
+class FlappyGame : public Game {
 public:
-    FlappyBirdGame(TFT_eSPI* tft_display, SoundManager* sound_manager, InputManager* input_manager);
+    FlappyGame(TFT_eSPI* tft_display, SoundManager* sound_manager, InputManager* input_manager);
 
 protected:
     // Only mandatory base class implementations
@@ -27,7 +27,7 @@ private:
     void checkCollisions();
     void drawHUD();
 
-    // Flappy Bird-specific properties
+    // Flappy-specific properties
     float player_y;
     float player_y_prev;
     float player_vel_y;
@@ -36,4 +36,4 @@ private:
     bool gameStarted;
 };
 
-#endif // FLAPPYBIRDGAME_H
+#endif // FLAPPYGAME_H

@@ -1,4 +1,4 @@
-#include "FlappyBirdGame.h"
+#include "FlappyGame.h"
 
 // O3 Pure Orange (RGB: 255, 110, 0 -> 0xFD60)
 static const uint16_t COLOR_BIRD = 0xFD60;
@@ -20,11 +20,11 @@ const int HUD_HEIGHT = 20;
 const int MIN_GAP_Y = 55;
 const int MAX_GAP_Y = 135;
 
-FlappyBirdGame::FlappyBirdGame(TFT_eSPI* tft_display, SoundManager* sound_manager, InputManager* input_manager)
-    : Game(tft_display, sound_manager, input_manager, "Flappy Bird") {
+FlappyGame::FlappyGame(TFT_eSPI* tft_display, SoundManager* sound_manager, InputManager* input_manager)
+    : Game(tft_display, sound_manager, input_manager, "Flappy") {
 }
 
-void FlappyBirdGame::resetGame() {
+void FlappyGame::resetGame() {
     player_y = tft->height() / 2;
     player_y_prev = player_y;
     player_vel_y = 0;
@@ -41,7 +41,7 @@ void FlappyBirdGame::resetGame() {
     }
 }
 
-void FlappyBirdGame::handleInputPlaying() {
+void FlappyGame::handleInputPlaying() {
     if (input->wasPressed(BTN_ID_A)) {
         if (!gameStarted) {
             gameStarted = true;
@@ -51,12 +51,12 @@ void FlappyBirdGame::handleInputPlaying() {
     }
 }
 
-void FlappyBirdGame::onResume() {
+void FlappyGame::onResume() {
     // Clear the pause popup and redraw pipes, bird and HUD at their current positions
     fullRedrawRequired = true;
 }
 
-void FlappyBirdGame::drawTutorialContent() {
+void FlappyGame::drawTutorialContent() {
     drawTutorialHeader(tr(STR_TUT_SEC_CONTROLS), 39);
     drawTutorialLine(tr(STR_FB_TUT_C1), 52);
 
@@ -67,7 +67,7 @@ void FlappyBirdGame::drawTutorialContent() {
     drawTutorialLine(tr(STR_FB_TUT_O4), 122);
 }
 
-void FlappyBirdGame::updatePlaying() {
+void FlappyGame::updatePlaying() {
     if (!gameStarted) {
         return;
     }
@@ -97,7 +97,7 @@ void FlappyBirdGame::updatePlaying() {
     checkCollisions();
 }
 
-void FlappyBirdGame::checkCollisions() {
+void FlappyGame::checkCollisions() {
     // Ceiling and floor collision
     if (player_y + PLAYER_SIZE > tft->height() || player_y < HUD_HEIGHT) {
         sound->play(MELODY_HIT, MELODY_HIT_LENGTH);
@@ -117,7 +117,7 @@ void FlappyBirdGame::checkCollisions() {
     }
 }
 
-void FlappyBirdGame::drawPlaying() {
+void FlappyGame::drawPlaying() {
     if (fullRedrawRequired) {
         tft->fillScreen(TFT_BLACK);
         drawHUD();
@@ -173,7 +173,7 @@ void FlappyBirdGame::drawPlaying() {
     }
 }
 
-void FlappyBirdGame::drawHUD() {
+void FlappyGame::drawHUD() {
     tft->fillRect(0, 0, tft->width(), HUD_HEIGHT, TFT_BLACK);
     tft->drawFastHLine(0, HUD_HEIGHT - 1, tft->width(), TFT_WHITE);
     

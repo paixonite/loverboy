@@ -57,7 +57,7 @@
   X(STR_CR_TUT_O2,         48, "Hop on logs to cross rivers. Don't drown!", "Pule nos troncos no rio. Não se afogue!") \
   X(STR_CR_TUT_O3,         48, "Watch for fast cars and red train lights.", "Cuidado com carros e sinais de trem.") \
   X(STR_CR_TUT_O4,         48, "Go as far as you can to score high!", "Avance o mais longe que conseguir!") \
-  /* --- Flappy Bird Tutorial --- */ \
+  /* --- Flappy Tutorial --- */ \
   X(STR_FB_TUT_C1,         40, "[A] : Flap wings / Gain altitude", "[A] : Bater asas / Ganhar altura") \
   X(STR_FB_TUT_O1,         48, "Tap [A] to keep the bird in the air.", "Toque [A] para manter o pássaro no ar.") \
   X(STR_FB_TUT_O2,         48, "Fly safely through gaps between pipes.", "Voe pelos vãos entre os canos verdes.") \
