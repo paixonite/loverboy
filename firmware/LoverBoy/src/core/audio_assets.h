@@ -86,7 +86,7 @@ const Note MELODY_LOVERBOY_CHORUS[] = {
     {NOTE_G4,  LOVERBOY_BEATS(0.5)},  // doing
     {NOTE_F4,  LOVERBOY_BEATS(0.25)}, // to
     {NOTE_DS4, LOVERBOY_BEATS(1.25)}, // night?
-    {REST,     LOVERBOY_BEATS(0.25)},  
+    {REST,     LOVERBOY_BEATS(0.1)},  
     {NOTE_G4,  LOVERBOY_BEATS(0.5)},  // hey
     {NOTE_D4,  LOVERBOY_BEATS(1.5)}   // boy!
 };
