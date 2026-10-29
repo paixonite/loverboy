@@ -6,16 +6,16 @@
 
 ![LoverBoy logo](LoverBoy_logo.png)
 
-Um console de videogame portátil inspirado no clássico "Game Boy", construído do zero utilizando um LILYGO ESP32-S3, componentes eletrônicos básicos e muita programação! Este é um projeto educacional e pessoal, originalmente desenvolvido com os recursos e espaço maker do Colégio Técnico da UFMG (Coltec) e em constante evolução durante a minha graduação em Ciência da Computação (DCC/UFMG).
+Um console portátil estilo arcade inspirado no clássico "Game Boy", construído do zero utilizando um LILYGO ESP32-S3, componentes eletrônicos básicos e muita programação! Este é um projeto educacional e pessoal, originalmente desenvolvido com os recursos e espaço maker do Colégio Técnico da UFMG (Coltec) e em constante evolução durante a minha graduação em Ciência da Computação (DCC/UFMG).
 
 ## 🕹️ Sobre o Projeto
 
 O objetivo do LoverBoy é criar uma plataforma modular e robusta de hardware e software, desenvolvendo habilidades práticas em:
 
-- **Desenvolvimento de Hardware:** Montagem de circuitos, soldagem, roteamento de PCB e integração de componentes.
+- **Arquitetura de Software:** Sistema operacional organizado por responsabilidades, com classes abstratas e uso do padrão de projeto Template Method para ditar o ciclo de vida dos jogos.
 - **Programação de Baixo Nível:** Interação direta com GPIOs, temporizadores (PWM) e periféricos do microcontrolador.
-- **Arquitetura de Software:** Sistema operacional organizado por responsabilidades, com classes abstratas e uso do padrão de projeto **Template Method** para ditar o ciclo de vida dos jogos.
-- **Gerenciamento de Energia:** Sistema de alimentação com bateria recarregável LiPo para portabilidade real.
+- **Desenvolvimento de Hardware:** Montagem de circuitos, soldagem, roteamento de PCB, integração de componentes e sistema de bateria recarregável para portabilidade real.
+- **Modelagem e Impressão 3D:** Projeto de uma carcaça ergonômica personalizada no Onshape e fabricação via impressão 3D FDM.
 
 ## ⚙️ Hardware Utilizado
 
@@ -23,6 +23,7 @@ O objetivo do LoverBoy é criar uma plataforma modular e robusta de hardware e s
 - **Entradas:** 8 botões táteis (D-Pad: Cima, Baixo, Esquerda, Direita; Ações: A, B; Sistema: Start, Select).
 - **Áudio:** 1 Buzzer passivo para melodias e efeitos sonoros não-bloqueantes.
 - **Alimentação:** Bateria recarregável LiPo 3.7V, gerenciada por módulo de carga TP4056 USB-C e chave deslizante.
+- **Carcaça:** Carcaça personalizada em duas partes impressa em 3D, projetada no Onshape (consulte [`case/`](./case/)).
 
 ## ✨ Recursos do Firmware
 
@@ -74,6 +75,19 @@ firmware/LoverBoy/
         |-- Localization.h/.cpp     # Seleção de idioma e busca de textos (tr())
         |-- i18n_strings.h          # Tabela única com todos os textos em todos os idiomas
 ```
+
+## 🖨️ Carcaça & Impressão 3D
+
+O LoverBoy inclui uma carcaça personalizada em duas partes modelada no Onshape, projetada especialmente para impressão 3D FDM sem necessidade de suportes.
+
+<p align="center">
+  <img src="case/renders/render_assembly.png" width="60%" alt="Montagem da Carcaça LoverBoy" />
+</p>
+
+- **Arquivos para Impressão:** Meshes prontas para fatiamento em [`case/stl/`](./case/stl/) (`front_cover.stl`, `back_cover.stl`).
+- **Código-Fonte CAD:** Montagem sólida em formato STEP em [`case/source/`](./case/source/) e projeto paramétrico no [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
+
+Para configurações de fatiamento recomendadas, orientação de mesa e passo a passo de montagem, consulte a **[Documentação da Carcaça (`case/README-pt.md`)](./case/README-pt.md)**.
 
 ## 🚀 Como Compilar e Gravar
 

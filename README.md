@@ -6,16 +6,16 @@
 
 ![LoverBoy logo](LoverBoy_logo.png)
 
-A portable game console, inspired by the iconic "Game Boy", built from scratch using a LILYGO ESP32-S3, basic electronic components, and lots of programming! This is a personal educational project, originally developed using the materials and maker space at Colégio Técnico da UFMG (Coltec) and constantly evolving during my Computer Science undergraduate studies (DCC/UFMG).
+A portable arcade game console, inspired by the iconic "Game Boy", built from scratch using a LILYGO ESP32-S3, basic electronic components, and lots of programming! This is a personal educational project, originally developed using the materials and maker space at Colégio Técnico da UFMG (Coltec) and constantly evolving during my Computer Science undergraduate studies (DCC/UFMG).
 
 ## 🕹️ About the Project
 
 The goal of LoverBoy is to build a robust and modular hardware and software platform, developing practical skills in:
 
-- **Hardware Development:** Circuit assembly, soldering, and component integration.
-- **Low-Level Programming:** Direct interaction with GPIOs, timers (PWM), and microcontroller peripherals.
 - **Software Architecture:** Creating an operating system organized by responsibilities, with abstract classes dictating the game lifecycle via the Template Method pattern.
-- **Power Management:** Implementing a rechargeable battery system for true portability.
+- **Low-Level Programming:** Direct interaction with GPIOs, timers (PWM), and microcontroller peripherals.
+- **Hardware Development:** Circuit assembly, soldering, component integration, and rechargeable battery power management for true portability.
+- **Modeling and 3D Printing:** Designing a custom ergonomic enclosure in Onshape and manufacturing it via FDM 3D printing.
 
 ## ⚙️ Hardware Used
 
@@ -23,6 +23,7 @@ The goal of LoverBoy is to build a robust and modular hardware and software plat
 - **Inputs:** 8 push buttons (D-Pad, Start, Select, A, B).
 - **Audio:** 1 Passive buzzer for playing melodies and sound effects.
 - **Power:** 3.7V rechargeable LiPo battery, managed by a TP4056 USB-C charging module and a slide switch.
+- **Enclosure:** Custom two-piece 3D printed shell designed in Onshape (see [`case/`](./case/)).
 
 ## ✨ Firmware Features
 
@@ -73,6 +74,19 @@ firmware/LoverBoy/
         |-- Localization.h/.cpp     # Language selector and string lookup (tr())
         |-- i18n_strings.h          # Central string table for all supported languages
 ```
+
+## 🖨️ Enclosure & 3D Printing
+
+LoverBoy features a custom two-piece enclosure modeled in Onshape and engineered for FDM 3D printing without any support material.
+
+<p align="center">
+  <img src="case/renders/render_assembly.png" width="60%" alt="LoverBoy Case Assembly" />
+</p>
+
+- **Print Files:** Slicer-ready meshes in [`case/stl/`](./case/stl/) (`front_cover.stl`, `back_cover.stl`).
+- **CAD Source:** Solid body STEP assembly in [`case/source/`](./case/source/) and live parametric project on [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
+
+For recommended slicing settings, print orientation, and step-by-step assembly, see the **[Case Documentation (`case/README.md`)](./case/README.md)**.
 
 ## 🚀 How to Compile and Upload
 
