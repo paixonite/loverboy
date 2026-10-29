@@ -23,6 +23,7 @@ O objetivo do LoverBoy é criar uma plataforma modular e robusta de hardware e s
 - **Entradas:** 8 botões táteis (D-Pad: Cima, Baixo, Esquerda, Direita; Ações: A, B; Sistema: Start, Select).
 - **Áudio:** 1 Buzzer passivo para melodias e efeitos sonoros não-bloqueantes.
 - **Alimentação:** Bateria recarregável LiPo 3.7V, gerenciada por módulo de carga TP4056 USB-C e chave deslizante.
+- **PCB Customizada:** Placa-mãe through-hole de camada única (face simples) projetada no EasyEDA (consulte [`pcb/`](./pcb/)).
 - **Carcaça:** Carcaça personalizada em duas partes impressa em 3D, projetada no Onshape (consulte [`case/`](./case/)).
 
 ## ✨ Recursos do Firmware
@@ -76,6 +77,21 @@ firmware/LoverBoy/
         |-- i18n_strings.h          # Tabela única com todos os textos em todos os idiomas
 ```
 
+## 🔌 PCB Customizada & Eletrônica
+
+O LoverBoy utiliza uma placa-mãe de camada única (face simples) projetada no EasyEDA que integra a LILYGO T-Display-S3, botões, buzzer, chave liga/desliga e o carregador TP4056. Ela foi traçada com trilhas e isolamentos largos para permitir tanto a fabricação local em laboratório (fresadora CNC ou laser) quanto a encomenda em fábricas comerciais.
+
+<p align="center">
+  <img src="pcb/EspBoy_PCB_Layout.png" width="48%" alt="Layout da PCB LoverBoy" />
+  <img src="pcb/EspBoy_Schematic.png" width="48%" alt="Esquemático LoverBoy" />
+</p>
+
+- **Arquivos Gerber:** Pacote pronto para fabricação em [`pcb/gerbers/`](./pcb/gerbers/).
+- **Lista de Materiais (BOM):** Planilha de componentes com códigos LCSC em [`pcb/EspBoy_BOM.csv`](./pcb/EspBoy_BOM.csv).
+- **Código-Fonte EDA:** Esquemático e layout editáveis do EasyEDA em [`pcb/source/`](./pcb/source/).
+
+Para a tabela completa de pinagem, parâmetros de fabricação e notas de hardware, consulte a **[Documentação da PCB](./pcb/README-pt.md)**.
+
 ## 🖨️ Carcaça & Impressão 3D
 
 O LoverBoy inclui uma carcaça personalizada em duas partes modelada no Onshape, projetada especialmente para impressão 3D FDM sem necessidade de suportes.
@@ -84,10 +100,10 @@ O LoverBoy inclui uma carcaça personalizada em duas partes modelada no Onshape,
   <img src="case/renders/render_assembly.png" width="60%" alt="Montagem da Carcaça LoverBoy" />
 </p>
 
-- **Arquivos para Impressão:** Meshes prontas para fatiamento em [`case/stl/`](./case/stl/) (`front_cover.stl`, `back_cover.stl`).
+- **Arquivos para Impressão:** Meshes prontas para fatiamento em [`case/stl/`](./case/stl/).
 - **Código-Fonte CAD:** Montagem sólida em formato STEP em [`case/source/`](./case/source/) e projeto paramétrico no [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
 
-Para configurações de fatiamento recomendadas, orientação de mesa e passo a passo de montagem, consulte a **[Documentação da Carcaça (`case/README-pt.md`)](./case/README-pt.md)**.
+Para configurações de fatiamento recomendadas, orientação de mesa e passo a passo de montagem, consulte a **[Documentação da Carcaça](./case/README-pt.md)**.
 
 ## 🚀 Como Compilar e Gravar
 

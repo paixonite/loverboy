@@ -23,6 +23,7 @@ The goal of LoverBoy is to build a robust and modular hardware and software plat
 - **Inputs:** 8 push buttons (D-Pad, Start, Select, A, B).
 - **Audio:** 1 Passive buzzer for playing melodies and sound effects.
 - **Power:** 3.7V rechargeable LiPo battery, managed by a TP4056 USB-C charging module and a slide switch.
+- **Custom PCB:** Single-layer through-hole carrier board designed in EasyEDA (see [`pcb/`](./pcb/)).
 - **Enclosure:** Custom two-piece 3D printed shell designed in Onshape (see [`case/`](./case/)).
 
 ## ✨ Firmware Features
@@ -75,6 +76,21 @@ firmware/LoverBoy/
         |-- i18n_strings.h          # Central string table for all supported languages
 ```
 
+## 🔌 Custom PCB & Electronics
+
+LoverBoy uses a custom single-layer carrier board designed in EasyEDA that connects the LILYGO T-Display-S3, buttons, buzzer, power switch, and TP4056 charger. It is engineered with wide traces and clearances to support both in-house maker space fabrication (CNC milling / laser) and commercial PCB fabs.
+
+<p align="center">
+  <img src="pcb/EspBoy_PCB_Layout.png" width="48%" alt="LoverBoy PCB Layout" />
+  <img src="pcb/EspBoy_Schematic.png" width="48%" alt="LoverBoy Schematic" />
+</p>
+
+- **Gerber Files:** Ready-to-order archive in [`pcb/gerbers/`](./pcb/gerbers/).
+- **Bill of Materials:** Component list with LCSC part numbers in [`pcb/EspBoy_BOM.csv`](./pcb/EspBoy_BOM.csv).
+- **EDA Source:** Editable EasyEDA schematic and layout files in [`pcb/source/`](./pcb/source/).
+
+For the full pinout table, fabrication parameters, and hardware notes, see the **[PCB Documentation](./pcb/README.md)**.
+
 ## 🖨️ Enclosure & 3D Printing
 
 LoverBoy features a custom two-piece enclosure modeled in Onshape and engineered for FDM 3D printing without any support material.
@@ -83,10 +99,10 @@ LoverBoy features a custom two-piece enclosure modeled in Onshape and engineered
   <img src="case/renders/render_assembly.png" width="60%" alt="LoverBoy Case Assembly" />
 </p>
 
-- **Print Files:** Slicer-ready meshes in [`case/stl/`](./case/stl/) (`front_cover.stl`, `back_cover.stl`).
+- **Print Files:** Slicer-ready meshes in [`case/stl/`](./case/stl/).
 - **CAD Source:** Solid body STEP assembly in [`case/source/`](./case/source/) and live parametric project on [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
 
-For recommended slicing settings, print orientation, and step-by-step assembly, see the **[Case Documentation (`case/README.md`)](./case/README.md)**.
+For recommended slicing settings, print orientation, and step-by-step assembly, see the **[Case Documentation](./case/README.md)**.
 
 ## 🚀 How to Compile and Upload
 
