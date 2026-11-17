@@ -1,10 +1,11 @@
 # LoverBoy - PCB Customizada & Eletrônica
 
-[![EDA](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue)](./source/)
+[![EDA: EasyEDA v6.5](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue.svg)](source/)
+[![Licença: CC BY-NC-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--NC--SA%204.0-lightgrey.svg)](../LICENSE)
 
-**Idioma:** [English](./README.md) | Português
+[← LoverBoy](../README-pt.md) · **Idioma:** [English](README.md) | Português
 
-Placa-mãe through-hole de camada única projetada no EasyEDA que integra a LILYGO T-Display-S3, botões, buzzer, chave liga/desliga e carregador TP4056 USB-C.
+Placa-mãe through-hole de camada única projetada no EasyEDA que integra a **LILYGO T-Display-S3**, 8 botões táteis estilo arcade (D-Pad, A, B, Start, Select), um buzzer passivo piezoelétrico, uma chave deslizante liga/desliga e um circuito de recarga LiPo USB-C TP4056 em uma única placa portátil.
 
 > [!WARNING]
 > **Errata da Revisão 1.0 de Hardware (Problemas Conhecidos):**
@@ -12,26 +13,23 @@ Placa-mãe through-hole de camada única projetada no EasyEDA que integra a LILY
 > 1. **Curto no Roteamento dos Botões ([Issue #7](https://github.com/paixonite/loverboy/issues/7)):** Um erro no traçado faz com que os botões fechem curto entre `3V3` e `GND` ao serem pressionados, em vez de passarem pelos resistores de `10kΩ` (`R1–R8`). Nas placas `v1.0` fabricadas, a correção consiste em cortar a trilha direta logo após cada botão e soldar a conexão passando pelo respectivo resistor.
 > 2. **Desalinhamento do Footprint do TP4056 ([Issue #8](https://github.com/paixonite/loverboy/issues/8)):** A medida horizontal do módulo TP4056 ficou cerca de 2 mm menor do que o componente real, fazendo o módulo ultrapassar levemente a borda da placa e deslocando a tela em ~2 mm para a esquerda do centro na carcaça `v1.0` ([Issue #9](https://github.com/paixonite/loverboy/issues/9)).
 
-## ▸ Visão Geral
+> [!NOTE]
+> **Nomenclatura dos Arquivos (`EspBoy`):** A Revisão 1.0 do hardware foi originalmente projetada e prototipada sob o nome provisório *EspBoy* antes do projeto receber o nome oficial **LoverBoy**. Todos os arquivos fonte, esquemáticos, BOM e Gerbers da `v1.0` mantêm o prefixo `EspBoy_*`; a futura versão `v2.0` passará a utilizar o prefixo `LoverBoy_*`.
 
-A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis estilo arcade (D-Pad, A, B, Start, Select), um buzzer passivo piezoelétrico, uma chave deslizante liga/desliga e um circuito de recarga LiPo USB-C TP4056 em uma única placa-mãe portátil.
-
-> **Nota sobre a Nomenclatura (`EspBoy`):** A Revisão 1.0 do hardware foi originalmente projetada e prototipada sob o nome provisório *EspBoy* antes do projeto receber o nome oficial **LoverBoy**. Todos os arquivos fonte, esquemáticos, BOM e Gerbers da `v1.0` mantêm o prefixo `EspBoy_*`; a futura versão `v2.0` passará a utilizar o prefixo `LoverBoy_*`.
-
-## ▸ Layout da Placa & Esquemático
+## Layout da Placa & Esquemático
 
 <p align="center">
-  <img src="./EspBoy_PCB_Layout.png" width="48%" alt="Layout da PCB LoverBoy" />
-  <img src="./EspBoy_Schematic.png" width="48%" alt="Esquemático LoverBoy" />
+  <img src="EspBoy_PCB_Layout.png" width="48%" alt="Layout da PCB LoverBoy" />
+  <img src="EspBoy_Schematic.png" width="48%" alt="Esquemático LoverBoy" />
 </p>
 
 - **PDFs Vetoriais para Inspeção / Impressão:**
-  - [`EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
-  - [`EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
+  - [`EspBoy_PCB_Layout.pdf`](EspBoy_PCB_Layout.pdf)
+  - [`EspBoy_Schematic.pdf`](EspBoy_Schematic.pdf)
 
-## ▸ Lista de Materiais (BOM)
+## Lista de Materiais (BOM)
 
-A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
+A planilha completa está disponível em [`EspBoy_BOM.csv`](EspBoy_BOM.csv).
 
 | Designador | Componente | Qtd | Footprint / Encapsulamento | Part Number | Código LCSC |
 | :--- | :--- | :---: | :--- | :--- | :--- |
@@ -43,7 +41,7 @@ A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 | `USB-C` | **Módulo Carregador TP4056 USB-C** | 1 | Módulo THT Customizado | TP4056 1S LiPo | — |
 | *(Externo)* | **Bateria LiPo 3.7V** | 1 | Soldada nos pinos `BAT+`/`BAT-` do TP4056 | LiPo Recarregável 3.7V | — |
 
-## ▸ Pinagem & Mapeamento no Firmware
+## Pinagem & Mapeamento no Firmware
 
 Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/LoverBoy/src/core/pins.h`](../firmware/LoverBoy/src/core/pins.h):
 
@@ -62,20 +60,22 @@ Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/
 | *(Interno)* | Leitura ADC da Bateria | `GPIO 4` | `BATTERY_SENSE_PIN` | Divisor de tensão interno no ADC |
 | *(Interno)* | Backlight da Tela TFT | `GPIO 38` | `TFT_BL_PIN` | Controle PWM de brilho da tela ST7789 |
 
-## ▸ Guia de Fabricação & Manufatura
+## Guia de Fabricação & Manufatura
 
 A placa foi desenhada com larguras de trilha e espaçamentos generosos para permitir tanto a **fabricação local em laboratório/makerspace** quanto a encomenda em **fábricas comerciais de PCB**, utilizando exatamente os mesmos arquivos.
 
 ### Opção 1: Fabricação Local / Maker Space (Fresadora CNC ou Laser)
+
 O protótipo `v1.0` foi confeccionado em uma **fresadora CNC**, e o traçado é igualmente compatível com **gravação a laser** (ablação de tinta/filme fotossensível + corrosão ou ablação direta do cobre):
 
 - **Trilhas em Camada Única (Bottom Layer):** Todas as trilhas de cobre estão na face inferior da placa, dispensando o alinhamento de duas faces ou virar a placa na fresadora.
-- **Trilhas e Espaçamentos Largos:** Projetada respeitando as tolerâncias físicas de isolamento por fresagem ($\ge 0.4\text{ mm}$ de isolamento e trilhas largas), o que garante excelente definição tanto em fresas CNC quanto no feixe fino de máquinas a laser.
+- **Trilhas e Espaçamentos Largos:** Projetada respeitando as tolerâncias físicas de isolamento por fresagem (≥ 0.4 mm de isolamento e trilhas largas), o que garante excelente definição tanto em fresas CNC quanto no feixe fino de máquinas a laser.
 - **Componentes 100% Through-Hole (THT):** Todos os componentes da placa utilizam furos passantes, facilitando a soldagem manual em cobre nu (sem máscara de solda).
 - **Sem Furos Metalizados (PTH):** Por ser estritamente de camada única, não é necessária metalização química de vias nem uso de rebites condutivos.
 
 ### Opção 2: Fábrica Comercial de PCB (JLCPCB / PCBWay / OSH Park)
-Para encomendar placas industrializadas com máscara de solda, basta enviar o arquivo [`gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip`](./gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip) diretamente na plataforma da fabricante com os parâmetros padrão:
+
+Para encomendar placas industrializadas com máscara de solda, basta enviar o arquivo [`gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip`](gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip) diretamente na plataforma da fabricante com os parâmetros padrão:
 
 | Parâmetro | Configuração Recomendada |
 | :--- | :--- |
@@ -86,18 +86,19 @@ Para encomendar placas industrializadas com máscara de solda, basta enviar o ar
 | **Acabamento Superficial** | HASL (com ou sem chumbo) ou ENIG |
 | **Cor da Máscara de Solda** | Qualquer cor |
 
-## ▸ Editando os Arquivos Fonte (EasyEDA)
+## Editando os Arquivos Fonte (EasyEDA)
 
-Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./source/):
+Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](source/):
 - `source/SCH_EspBoy.json` — Arquivo do esquemático
 - `source/PCB_EspBoy.json` — Arquivo do layout da PCB
 
-### Como Abrir:
+### Como Abrir
+
 1. Acesse o **[EasyEDA Standard](https://easyeda.com/editor)** (no navegador ou aplicativo desktop, criado na versão `v6.5.51`).
-2. Vá no menu **File $\rightarrow$ Open $\rightarrow$ EasyEDA...**
+2. Vá no menu **File → Open → EasyEDA...**
 3. Selecione `SCH_EspBoy.json` e `PCB_EspBoy.json` para visualizar, alterar trilhas ou exportar novos arquivos Gerber.
 
-## ▸ Estrutura de Diretórios
+## Estrutura de Diretórios
 
 ```text
 pcb/

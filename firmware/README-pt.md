@@ -1,13 +1,14 @@
 # LoverBoy - Firmware
 
-[![Plataforma: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#-estrutura-do-código)
-[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#-compilar-e-gravar)
+![Plataforma: ESP32-S3](https://img.shields.io/badge/plataforma-ESP32--S3-blue.svg)
+![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)
+[![Licença: CC BY-NC-SA 4.0](https://img.shields.io/badge/licen%C3%A7a-CC%20BY--NC--SA%204.0-lightgrey.svg)](../LICENSE)
 
-**Idioma:** [English](./README.md) | Português
+[← LoverBoy](../README-pt.md) · **Idioma:** [English](README.md) | Português
 
 O firmware em C++ do LoverBoy (`firmware/LoverBoy/`) é organizado por responsabilidade: um orquestrador central delega a gerenciadores especializados, e todo jogo herda um ciclo de vida comum de uma classe base abstrata.
 
-## ▸ Arquitetura
+## Arquitetura
 
 `LoverBoyCore` é o orquestrador global de estado (Menu vs Jogo) e delega a gerenciadores especializados:
 
@@ -21,19 +22,16 @@ O firmware em C++ do LoverBoy (`firmware/LoverBoy/`) é organizado por responsab
 | `TextRenderer` | Desenho de texto UTF-8 com acentos sobre a fonte pixelada retrô |
 | `Localization` | Seleção de idioma e busca de textos via `tr()` |
 
-Novos jogos herdam da superclasse abstrata `Game`, que fornece a máquina de estados padrão e os métodos do padrão Template Method.
+Novos jogos herdam da superclasse abstrata `Game`, que fornece a máquina de estados padrão (carrossel de título com Jogar, Tutorial e Recordes, partida ativa, pausa, game over e entrada de 3 iniciais para recorde) via padrão Template Method.
 
-## ▸ Recursos
+## Destaques Técnicos
 
-- **Jogos inclusos:** Crossy, Flappy, Frogger, Genius, Snake e Tetris a ~60 FPS.
-- **Renderização por diferença (zero flicker):** Apenas os pixels que mudaram entre os quadros são apagados e redesenhados, eliminando cintilações no barramento do display.
-- **Recordes persistentes:** Top 3 de cada jogo salvo na Flash (Preferences/NVS), com tela clássica estilo arcade para inserir 3 iniciais.
-- **Tutoriais integrados:** Todo jogo tem uma tela de tutorial no carrossel de 3 opções do título (Jogar, Tutorial, Recordes), em inglês e português.
-- **Menu de configurações:** Volume, brilho da tela, tema de cores (5 paletas), idioma e reset de recordes. O estado de mudo persiste entre reinicializações, evitando o buzzer alto na inicialização.
-- **Interface multilíngue:** Inglês (padrão) e Português do Brasil. Todo texto da tela fica em uma única tabela (`i18n_strings.h`).
-- **Áudio não-bloqueante:** Melodias e efeitos rodam em uma máquina de estados sem congelar a lógica dos jogos.
+- **Renderização por diferença (~60 FPS, zero flicker):** Apenas os pixels que mudam entre quadros são apagados e redesenhados, eliminando cintilações no barramento da tela ST7789.
+- **Estado persistente na NVS:** Preferences/NVS armazena configurações (volume, brilho, 5 paletas de cores, idioma), o Top 3 de recordes de cada jogo e o estado de mudo entre reinicializações, evitando que o buzzer toque alto ao ligar.
+- **i18n em tabela única e fonte pixelada UTF-8:** Todos os textos de interface e tutoriais ficam em [`i18n_strings.h`](LoverBoy/src/localization/i18n_strings.h) (Inglês padrão + Português do Brasil), com decomposição e sobreposição de acentos em `Utf8Text` / `TextRenderer`.
+- **Áudio não-bloqueante:** Melodias de fundo e efeitos sonoros avançam por uma máquina de estados baseada em milissegundos, sem travar a física do jogo nem a leitura dos botões.
 
-## ▸ Estrutura do Código
+## Estrutura do Código
 
 ```text
 firmware/
@@ -67,9 +65,9 @@ firmware/
             └── i18n_strings.h          # Tabela única com todos os textos em todos os idiomas
 ```
 
-As definições de pinos ficam em [`pins.h`](./LoverBoy/src/core/pins.h); o mapeamento correspondente na PCB está na [documentação da PCB](../pcb/README-pt.md#-pinagem--mapeamento-no-firmware).
+As definições de pinos ficam em [`pins.h`](LoverBoy/src/core/pins.h); o mapeamento correspondente na PCB está na [documentação da PCB](../pcb/README-pt.md#pinagem--mapeamento-no-firmware).
 
-## ▸ Compilar e Gravar
+## Compilar e Gravar
 
 Todos os três métodos usam o FQBN da placa `esp32:esp32:lilygo_t_display_s3`.
 
@@ -117,9 +115,9 @@ Ideal para quem desenvolve dentro do terminal Linux do WSL no Windows. O script 
 | `-e`, `--esptool <PATH>` | Caminho do `esptool.exe` no Windows | detectado automaticamente |
 | `-h`, `--help` | Mostra a ajuda e sai | |
 
-## ▸ Adicionando um Jogo
+## Adicionando um Jogo
 
-1. Crie `XxxGame.h/.cpp` em [`src/games/`](./LoverBoy/src/games/), herdando de `Game` e implementando seus métodos virtuais puros (`resetGame`, `updatePlaying`, `drawPlaying`, `handleInputPlaying`, `onResume`, `drawTutorialContent`).
+1. Crie `XxxGame.h/.cpp` em [`src/games/`](LoverBoy/src/games/), herdando de `Game` e implementando seus métodos virtuais puros (`resetGame`, `updatePlaying`, `drawPlaying`, `handleInputPlaying`, `onResume`, `drawTutorialContent`).
 2. Adicione um `case` em `LoverBoyCore::loadGame()`.
-3. Adicione o nome em `gameNames` e incremente `GAME_COUNT` em [`MenuManager.h`](./LoverBoy/src/ui/MenuManager.h). Use um nome de uma única palavra.
-4. Adicione os textos do tutorial para todos os idiomas em [`i18n_strings.h`](./LoverBoy/src/localization/i18n_strings.h).
+3. Adicione o nome em `gameNames` e incremente `GAME_COUNT` em [`MenuManager.h`](LoverBoy/src/ui/MenuManager.h). Use um nome de uma única palavra.
+4. Adicione os textos do tutorial para todos os idiomas em [`i18n_strings.h`](LoverBoy/src/localization/i18n_strings.h).

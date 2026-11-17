@@ -1,18 +1,19 @@
 # LoverBoy
 
-[![Status: in development](https://img.shields.io/badge/status-in%20development-yellow.svg)](#-features)
-[![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#-hardware)
-[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#-build--upload)
+![Status: in development](https://img.shields.io/badge/status-in%20development-yellow.svg)
+![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)
+![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
 
-**Language:** English | [Português](./README-pt.md)
+**Language:** English | [Português](README-pt.md)
 
-> *A passion project.*
+> *[A passion project.](ABOUT_THE_NAME.md)*
 
 ![LoverBoy logo](LoverBoy_logo.png)
 
 A portable arcade game console inspired by the Game Boy, built from scratch with a LILYGO ESP32-S3, basic electronic components, a custom PCB, a 3D-printed enclosure, and a modular C++ firmware with six games.
 
-## ▸ Why This Exists
+## Why This Exists
 
 LoverBoy is a personal educational project, started with the materials and maker space at Colégio Técnico da UFMG (Coltec) and still evolving through my Computer Science undergraduate studies (DCC/UFMG). It aims to build a robust, modular hardware and software platform while developing practical skills in:
 
@@ -21,7 +22,7 @@ LoverBoy is a personal educational project, started with the materials and maker
 - **Hardware development:** Circuit assembly, soldering, component integration, and rechargeable battery management.
 - **Modeling & 3D printing:** A custom ergonomic enclosure designed in Onshape and printed via FDM.
 
-## ▸ Features
+## Features
 
 - **Six games:** Crossy, Flappy, Frogger, Genius, Snake, and Tetris at ~60 FPS with flicker-free delta rendering.
 - **Persistent highscores:** Top 3 per game saved to Flash, with an arcade-style 3-initial entry screen.
@@ -32,7 +33,7 @@ LoverBoy is a personal educational project, started with the materials and maker
 
 Architecture, code layout, and how to add a game: **[Firmware Documentation](firmware/README.md)**.
 
-## ▸ Hardware
+## Hardware
 
 | Part | Details |
 |---|---|
@@ -43,7 +44,7 @@ Architecture, code layout, and how to add a game: **[Firmware Documentation](fir
 | **PCB** | Single-layer through-hole carrier board designed in EasyEDA ([`pcb/`](pcb/)) |
 | **Enclosure** | Custom two-piece 3D-printed shell designed in Onshape ([`case/`](case/)) |
 
-## ▸ Custom PCB
+## Custom PCB
 
 A single-layer carrier board connects the T-Display-S3, buttons, buzzer, power switch, and TP4056 charger. Wide traces and clearances allow both in-house fabrication (CNC milling / laser) and commercial PCB fabs.
 
@@ -54,7 +55,7 @@ A single-layer carrier board connects the T-Display-S3, buttons, buzzer, power s
 
 Gerbers, BOM, EDA sources, pinout table, and fabrication parameters: **[PCB Documentation](pcb/README.md)**.
 
-## ▸ Enclosure
+## Enclosure
 
 A two-piece enclosure modeled in Onshape and engineered for FDM printing without supports.
 
@@ -64,22 +65,24 @@ A two-piece enclosure modeled in Onshape and engineered for FDM printing without
 
 STL meshes, STEP source, slicing settings, and assembly steps: **[Case Documentation](case/README.md)**. The live parametric model is on [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
 
-## ▸ Build & Upload
+## Build & Upload
 
-Fastest path with `arduino-cli`:
+Requires the `esp32:esp32` board core and `TFT_eSPI` configured for the T-Display-S3 (`Setup206`). Fastest path with `arduino-cli`:
 
 ```bash
 arduino-cli compile --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 ```
 
-On Windows (Arduino IDE) or WSL (`./build_and_upload.sh -p COM7`), see the **[Firmware Documentation](firmware/README.md#-build--upload)**.
+For full prerequisites, Windows (Arduino IDE), or WSL (`./build_and_upload.sh -p COM7`), see the **[Firmware Documentation](firmware/README.md#build--upload)**.
 
-## ▸ Project Structure
+## Project Structure
 
 ```text
 loverboy/
 ├── README.md / README-pt.md        # Project overview (English / Portuguese)
+├── LICENSE                         # CC BY-NC-SA 4.0 license
+├── ABOUT_THE_NAME.md               # Naming rationale & backstory
 ├── LoverBoy_logo.png
 ├── build_and_upload.sh             # WSL one-command build & flash script
 ├── firmware/                       # Arduino sketch (core, games, UI, i18n) & docs
@@ -87,6 +90,8 @@ loverboy/
 └── case/                           # STL meshes, STEP source, renders & docs
 ```
 
-## ▸ Author
+## License
 
-- **[Vítor Paixão](https://github.com/paixonite)**
+This entire project — firmware, PCB design, and 3D enclosure — is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](LICENSE) license.
+
+Created by **[Vítor Paixão](https://github.com/paixonite)**.

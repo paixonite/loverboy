@@ -1,13 +1,14 @@
 # LoverBoy - Firmware
 
-[![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#-code-structure)
-[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#-build--upload)
+![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)
+![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey.svg)](../LICENSE)
 
-**Language:** English | [Português](./README-pt.md)
+[← LoverBoy](../README.md) · **Language:** English | [Português](README-pt.md)
 
 LoverBoy's C++ firmware (`firmware/LoverBoy/`) is organized by responsibility: a core orchestrator delegates to focused managers, and every game inherits a common lifecycle from an abstract base class.
 
-## ▸ Architecture
+## Architecture
 
 `LoverBoyCore` is the global state orchestrator (Menu vs Game) and delegates to specialized managers:
 
@@ -21,19 +22,16 @@ LoverBoy's C++ firmware (`firmware/LoverBoy/`) is organized by responsibility: a
 | `TextRenderer` | UTF-8 text renderer that overlays accents on the retro pixel font |
 | `Localization` | Language selection and string lookup via `tr()` |
 
-New games inherit from the abstract `Game` superclass, which provides the standard state machine and template methods (Template Method pattern).
+New games inherit from the abstract `Game` superclass, which provides the standard state machine (title carousel with Play, Tutorial, and Highscores, active gameplay, pause, game over, and 3-initial highscore entry) via the Template Method pattern.
 
-## ▸ Features
+## Design Highlights
 
-- **Included games:** Crossy, Flappy, Frogger, Genius, Snake, and Tetris at ~60 FPS.
-- **Delta rendering (zero flicker):** Only the pixels that changed between frames are erased and redrawn, which removes flicker on the display bus.
-- **Persistent highscores:** Top 3 per game saved to Flash (Preferences/NVS), with a classic arcade-style 3-initial entry screen.
-- **In-game tutorials:** Every game has a tutorial screen on its 3-option title carousel (Play, Tutorial, Highscores), in English and Brazilian Portuguese.
-- **Settings menu:** Volume, screen brightness, color theme (5 palettes), language, and highscore reset. The mute state persists across reboots, so the buzzer never blares at startup.
-- **Multi-language UI:** English (default) and Brazilian Portuguese. Every on-screen string lives in one table (`i18n_strings.h`).
-- **Non-blocking audio:** Background melodies and sound effects run on a state machine without freezing game logic.
+- **Delta rendering (~60 FPS, zero flicker):** Only pixels that change between frames are erased and redrawn, avoiding full-screen redraw flicker on the ST7789 display bus.
+- **Persistent NVS state:** Preferences/NVS stores settings (volume, brightness, 5 color palettes, language), Top 3 highscores per game, and mute state across reboots so the buzzer never blares on startup.
+- **Single-table i18n & UTF-8 pixel font:** All UI and tutorial strings live in [`i18n_strings.h`](LoverBoy/src/localization/i18n_strings.h) (English default + Brazilian Portuguese), with UTF-8 accent decomposition and overlay rendering in `Utf8Text` / `TextRenderer`.
+- **Non-blocking audio:** Background melodies and sound effects step through a millisecond-based state machine without stalling game physics or input polling.
 
-## ▸ Code Structure
+## Code Structure
 
 ```text
 firmware/
@@ -67,9 +65,9 @@ firmware/
             └── i18n_strings.h          # Central string table for all languages
 ```
 
-Pin definitions live in [`pins.h`](./LoverBoy/src/core/pins.h); the matching PCB mapping is in the [PCB documentation](../pcb/README.md#-pinout--firmware-mapping).
+Pin definitions live in [`pins.h`](LoverBoy/src/core/pins.h); the matching PCB mapping is in the [PCB documentation](../pcb/README.md#pinout--firmware-mapping).
 
-## ▸ Build & Upload
+## Build & Upload
 
 All three methods target the board FQBN `esp32:esp32:lilygo_t_display_s3`.
 
@@ -117,9 +115,9 @@ Ideal for developers working inside a WSL (Linux) terminal on Windows. The root 
 | `-e`, `--esptool <PATH>` | `esptool.exe` path on Windows | auto-detected |
 | `-h`, `--help` | Show help and exit | |
 
-## ▸ Adding a Game
+## Adding a Game
 
-1. Create `XxxGame.h/.cpp` in [`src/games/`](./LoverBoy/src/games/), inheriting from `Game` and implementing its pure virtual methods (`resetGame`, `updatePlaying`, `drawPlaying`, `handleInputPlaying`, `onResume`, `drawTutorialContent`).
+1. Create `XxxGame.h/.cpp` in [`src/games/`](LoverBoy/src/games/), inheriting from `Game` and implementing its pure virtual methods (`resetGame`, `updatePlaying`, `drawPlaying`, `handleInputPlaying`, `onResume`, `drawTutorialContent`).
 2. Add a `case` for it in `LoverBoyCore::loadGame()`.
-3. Add its name to `gameNames` and bump `GAME_COUNT` in [`MenuManager.h`](./LoverBoy/src/ui/MenuManager.h). Use a single-word name.
-4. Add its tutorial strings for every language to [`i18n_strings.h`](./LoverBoy/src/localization/i18n_strings.h).
+3. Add its name to `gameNames` and bump `GAME_COUNT` in [`MenuManager.h`](LoverBoy/src/ui/MenuManager.h). Use a single-word name.
+4. Add its tutorial strings for every language to [`i18n_strings.h`](LoverBoy/src/localization/i18n_strings.h).

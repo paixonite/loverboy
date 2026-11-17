@@ -1,10 +1,11 @@
 # LoverBoy - Custom PCB & Electronics
 
-[![EDA](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue)](./source/)
+[![EDA: EasyEDA v6.5](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue.svg)](source/)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey.svg)](../LICENSE)
 
-**Language:** English | [Português](./README-pt.md)
+[← LoverBoy](../README.md) · **Language:** English | [Português](README-pt.md)
 
-A single-layer through-hole carrier board designed in EasyEDA that connects the LILYGO T-Display-S3, buttons, buzzer, power switch, and TP4056 USB-C charger.
+A single-layer through-hole carrier board designed in EasyEDA that integrates the **LILYGO T-Display-S3**, 8 tactile arcade buttons (D-Pad, A, B, Start, Select), a passive piezo buzzer, a power slide switch, and a TP4056 USB-C LiPo charging circuit onto one handheld PCB.
 
 > [!WARNING]
 > **Hardware Rev 1.0 Errata (Known Issues):**
@@ -12,26 +13,23 @@ A single-layer through-hole carrier board designed in EasyEDA that connects the 
 > 1. **Button Pull-Down Routing Short ([Issue #7](https://github.com/paixonite/loverboy/issues/7)):** A routing mistake causes the push buttons to short `3V3` to `GND` when pressed instead of routing through the `10kΩ` resistors (`R1–R8`). On fabricated `v1.0` boards, this is remediated by cutting the direct trace behind each button and soldering a bridge through the resistor.
 > 2. **TP4056 Footprint Offset ([Issue #8](https://github.com/paixonite/loverboy/issues/8)):** The TP4056 module footprint is ~2 mm narrower horizontally than the physical module, causing the module to slightly overhang the board edge and shifting the display ~2 mm left of center in the `v1.0` enclosure ([Issue #9](https://github.com/paixonite/loverboy/issues/9)).
 
-## ▸ Overview
+> [!NOTE]
+> **File Naming (`EspBoy`):** Hardware Revision 1.0 was originally designed and prototyped under the working title *EspBoy* before the project was officially named **LoverBoy**. All `v1.0` source, schematic, BOM, and Gerber files retain the `EspBoy_*` prefix; the upcoming `v2.0` hardware release will transition to `LoverBoy_*`.
 
-The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade buttons (D-Pad, A, B, Start, Select), a passive piezo buzzer, a power slide switch, and a TP4056 USB-C LiPo charging circuit onto a single handheld carrier board.
-
-> **Note on File Naming (`EspBoy`):** Hardware Revision 1.0 was originally designed and prototyped under the working title *EspBoy* before the project was officially named **LoverBoy**. All `v1.0` source, schematic, BOM, and Gerber files retain the `EspBoy_*` prefix; the upcoming `v2.0` hardware release will transition to `LoverBoy_*`.
-
-## ▸ Board Layout & Schematic
+## Board Layout & Schematic
 
 <p align="center">
-  <img src="./EspBoy_PCB_Layout.png" width="48%" alt="LoverBoy PCB Layout" />
-  <img src="./EspBoy_Schematic.png" width="48%" alt="LoverBoy Schematic" />
+  <img src="EspBoy_PCB_Layout.png" width="48%" alt="LoverBoy PCB Layout" />
+  <img src="EspBoy_Schematic.png" width="48%" alt="LoverBoy Schematic" />
 </p>
 
 - **Vector PDFs for Inspection / Printing:**
-  - [`EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
-  - [`EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
+  - [`EspBoy_PCB_Layout.pdf`](EspBoy_PCB_Layout.pdf)
+  - [`EspBoy_Schematic.pdf`](EspBoy_Schematic.pdf)
 
-## ▸ Bill of Materials (BOM)
+## Bill of Materials (BOM)
 
-The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
+The full spreadsheet is available in [`EspBoy_BOM.csv`](EspBoy_BOM.csv).
 
 | Designator | Component | Qty | Footprint / Package | Part Number | LCSC Code |
 | :--- | :--- | :---: | :--- | :--- | :--- |
@@ -43,7 +41,7 @@ The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 | `USB-C` | **TP4056 USB-C Charging Module** | 1 | Custom THT Module | TP4056 1S LiPo | — |
 | *(External)* | **3.7V LiPo Battery** | 1 | Wired to TP4056 `BAT+`/`BAT-` | 3.7V Rechargeable LiPo | — |
 
-## ▸ Pinout & Firmware Mapping
+## Pinout & Firmware Mapping
 
 All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/pins.h`](../firmware/LoverBoy/src/core/pins.h):
 
@@ -62,20 +60,22 @@ All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/p
 | *(Internal)* | Battery ADC Sense | `GPIO 4` | `BATTERY_SENSE_PIN` | Internal voltage divider ADC |
 | *(Internal)* | TFT Backlight PWM | `GPIO 38` | `TFT_BL_PIN` | Internal 1.9" ST7789 backlight |
 
-## ▸ Manufacturing & Fabrication Guide
+## Manufacturing & Fabrication Guide
 
 The board was designed with generous trace widths and clearances so it can be produced either **in-house at a maker space** or ordered from a **commercial PCB fab house** using the exact same files.
 
 ### Option 1: In-House Maker Space Fabrication (CNC Milling / Laser)
+
 The `v1.0` prototype was manufactured in-house on a **CNC PCB milling machine**, and the layout is equally suited for **laser PCB fabrication** (laser resist ablation + etching or direct copper ablation):
 
 - **Single-Layer Routing (Bottom Layer):** All copper traces are routed on the bottom layer, meaning in-house fabrication requires zero board flipping or two-sided alignment.
-- **Wide Clearances & Traces:** Designed around physical isolation milling tolerances ($\ge 0.4\text{ mm}$ clearance and wide traces), meaning it will effortlessly resolve on both CNC routers and finer-spot laser machines.
+- **Wide Clearances & Traces:** Designed around physical isolation milling tolerances (≥ 0.4 mm clearance and wide traces), meaning it will effortlessly resolve on both CNC routers and finer-spot laser machines.
 - **Through-Hole (THT) Components Only:** Every component on the carrier board is through-hole, making hand-soldering on bare copper (without solder mask) straightforward.
 - **No Plated Through-Holes (PTH) Needed:** Because routing is strictly single-sided, no chemical via electroplating or copper eyelets/rivets are required.
 
 ### Option 2: Commercial PCB Fab (JLCPCB / PCBWay / OSH Park)
-To order professionally fabricated boards with solder mask, upload [`gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip`](./gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip) directly to your fab house of choice with these standard settings:
+
+To order professionally fabricated boards with solder mask, upload [`gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip`](gerbers/Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip) directly to your fab house of choice with these standard settings:
 
 | Parameter | Recommended Setting |
 | :--- | :--- |
@@ -86,18 +86,19 @@ To order professionally fabricated boards with solder mask, upload [`gerbers/Ger
 | **Surface Finish** | HASL (with lead), Lead-Free HASL, or ENIG |
 | **Solder Mask** | Any color |
 
-## ▸ Editing the Source Files (EasyEDA)
+## Editing the Source Files (EasyEDA)
 
-The editable schematic and PCB layout live in [`source/`](./source/):
+The editable schematic and PCB layout live in [`source/`](source/):
 - `source/SCH_EspBoy.json` — Schematic file
 - `source/PCB_EspBoy.json` — PCB layout file
 
-### How to Open:
+### How to Open
+
 1. Open **[EasyEDA Standard](https://easyeda.com/editor)** (browser or desktop app, created in `v6.5.51`).
-2. Go to **File $\rightarrow$ Open $\rightarrow$ EasyEDA...**
+2. Go to **File → Open → EasyEDA...**
 3. Select `SCH_EspBoy.json` and `PCB_EspBoy.json` to inspect, edit traces, or export updated Gerbers.
 
-## ▸ Directory Structure
+## Directory Structure
 
 ```text
 pcb/
