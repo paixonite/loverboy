@@ -7,7 +7,7 @@
 
 **Language:** English | [Português](README-pt.md)
 
-> *[A passion project.](ABOUT_THE_NAME.md)*
+> *A passion project.*
 
 ![LoverBoy logo](LoverBoy_logo.png)
 
@@ -82,7 +82,6 @@ For full prerequisites, Windows (Arduino IDE), or WSL (`./build_and_upload.sh -p
 loverboy/
 ├── README.md / README-pt.md        # Project overview (English / Portuguese)
 ├── LICENSE                         # CC BY-NC-SA 4.0 license
-├── ABOUT_THE_NAME.md               # Naming rationale & backstory
 ├── LoverBoy_logo.png
 ├── build_and_upload.sh             # WSL one-command build & flash script
 ├── firmware/                       # Arduino sketch (core, games, UI, i18n) & docs

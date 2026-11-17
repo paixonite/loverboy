@@ -7,7 +7,7 @@
 
 **Idioma:** [English](README.md) | Português
 
-> *[Um projeto de paixão.](ABOUT_THE_NAME.md)*
+> *Um projeto de paixão.*
 
 ![Logo do LoverBoy](LoverBoy_logo.png)
 
@@ -82,7 +82,6 @@ Para os pré-requisitos completos, Windows (Arduino IDE) ou WSL (`./build_and_up
 loverboy/
 ├── README.md / README-pt.md        # Visão geral (inglês / português)
 ├── LICENSE                         # Licença CC BY-NC-SA 4.0
-├── ABOUT_THE_NAME.md               # História e motivação do nome
 ├── LoverBoy_logo.png
 ├── build_and_upload.sh             # Script WSL de compilação e gravação em 1 comando
 ├── firmware/                       # Sketch Arduino (core, games, UI, i18n) & docs
