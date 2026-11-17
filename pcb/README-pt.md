@@ -1,8 +1,14 @@
 # LoverBoy - PCB Customizada & Eletrônica
 
-[English](./README.md) · [Visão Geral](#01-visão-geral) · [Layout da Placa & Esquemático](#02-layout-da-placa--esquemático) · [Lista de Materiais (BOM)](#03-lista-de-materiais-bom) · [Pinagem & Mapeamento no Firmware](#04-pinagem--mapeamento-no-firmware) · [Guia de Fabricação & Manufatura](#05-guia-de-fabricação--manufatura) · [Editando os Arquivos Fonte (EasyEDA)](#06-editando-os-arquivos-fonte-easyeda) · [Estrutura de Diretórios](#07-estrutura-de-diretórios) · [Voltar ao README](../README-pt.md)
-
 [![EDA](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue)](./source/)
+
+**Idioma:** [English](./README.md) | Português
+
+Placa-mãe through-hole de camada única projetada no EasyEDA que integra a LILYGO T-Display-S3, botões, buzzer, chave liga/desliga e carregador TP4056 USB-C.
+
+[Visão Geral](#-visão-geral) · [Layout da Placa & Esquemático](#-layout-da-placa--esquemático) · [Lista de Materiais (BOM)](#-lista-de-materiais-bom) · [Pinagem & Mapeamento no Firmware](#-pinagem--mapeamento-no-firmware) · [Guia de Fabricação & Manufatura](#-guia-de-fabricação--manufatura) · [Editando os Arquivos Fonte (EasyEDA)](#-editando-os-arquivos-fonte-easyeda) · [Estrutura de Diretórios](#-estrutura-de-diretórios) · [Voltar ao README](../README-pt.md)
+
+---
 
 > [!WARNING]
 > **Errata da Revisão 1.0 de Hardware (Problemas Conhecidos):**
@@ -12,7 +18,7 @@
 
 ---
 
-## 01. Visão Geral
+## ▸ Visão Geral
 
 A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis estilo arcade (D-Pad, A, B, Start, Select), um buzzer passivo piezoelétrico, uma chave deslizante liga/desliga e um circuito de recarga LiPo USB-C TP4056 em uma única placa-mãe portátil.
 
@@ -20,7 +26,7 @@ A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis
 
 ---
 
-## 02. Layout da Placa & Esquemático
+## ▸ Layout da Placa & Esquemático
 
 <p align="center">
   <img src="./EspBoy_PCB_Layout.png" width="48%" alt="Layout da PCB LoverBoy" />
@@ -28,12 +34,12 @@ A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis
 </p>
 
 - **PDFs Vetoriais para Inspeção / Impressão:**
-  - [📄 `EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
-  - [📄 `EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
+  - [`EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
+  - [`EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
 
 ---
 
-## 03. Lista de Materiais (BOM)
+## ▸ Lista de Materiais (BOM)
 
 A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
@@ -49,7 +55,7 @@ A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
 ---
 
-## 04. Pinagem & Mapeamento no Firmware
+## ▸ Pinagem & Mapeamento no Firmware
 
 Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/LoverBoy/src/core/pins.h`](../firmware/LoverBoy/src/core/pins.h):
 
@@ -70,7 +76,7 @@ Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/
 
 ---
 
-## 05. Guia de Fabricação & Manufatura
+## ▸ Guia de Fabricação & Manufatura
 
 A placa foi desenhada com larguras de trilha e espaçamentos generosos para permitir tanto a **fabricação local em laboratório/makerspace** quanto a encomenda em **fábricas comerciais de PCB**, utilizando exatamente os mesmos arquivos.
 
@@ -96,7 +102,7 @@ Para encomendar placas industrializadas com máscara de solda, basta enviar o ar
 
 ---
 
-## 06. Editando os Arquivos Fonte (EasyEDA)
+## ▸ Editando os Arquivos Fonte (EasyEDA)
 
 Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./source/):
 - `source/SCH_EspBoy.json` — Arquivo do esquemático
@@ -109,18 +115,18 @@ Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./so
 
 ---
 
-## 07. Estrutura de Diretórios
+## ▸ Estrutura de Diretórios
 
 ```text
 pcb/
-|-- README.md                                       # Documentação em Inglês
-|-- README-pt.md                                    # Esta documentação (Português)
-|-- EspBoy_BOM.csv                                  # Lista de Materiais (BOM) com códigos LCSC
-|-- EspBoy_PCB_Layout.pdf / .png                    # Exportações 2D do layout da placa
-|-- EspBoy_Schematic.pdf / .png                     # Exportações do esquemático elétrico
-|-- gerbers/
-|   `-- Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip     # Pacote Gerber e furação Excellon pronto para fabricação
-`-- source/
-    |-- PCB_EspBoy.json                             # Código-fonte do layout no EasyEDA Standard
-    `-- SCH_EspBoy.json                             # Código-fonte do esquemático no EasyEDA Standard
+├── README.md                                       # Documentação em Inglês
+├── README-pt.md                                    # Esta documentação (Português)
+├── EspBoy_BOM.csv                                  # Lista de Materiais (BOM) com códigos LCSC
+├── EspBoy_PCB_Layout.pdf / .png                    # Exportações 2D do layout da placa
+├── EspBoy_Schematic.pdf / .png                     # Exportações do esquemático elétrico
+├── gerbers/
+│   └── Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip     # Pacote Gerber e furação Excellon pronto para fabricação
+└── source/
+    ├── PCB_EspBoy.json                             # Código-fonte do layout no EasyEDA Standard
+    └── SCH_EspBoy.json                             # Código-fonte do esquemático no EasyEDA Standard
 ```

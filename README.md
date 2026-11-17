@@ -1,8 +1,10 @@
 # LoverBoy
 
-[![Status: in development](https://img.shields.io/badge/status-in%20development-yellow.svg)](#02-features)
-[![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#03-hardware)
-[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#06-build--upload)
+[![Status: in development](https://img.shields.io/badge/status-in%20development-yellow.svg)](#-features)
+[![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#-hardware)
+[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#-build--upload)
+
+**Language:** English | [Português](./README-pt.md)
 
 > *A passion project.*
 
@@ -10,11 +12,11 @@
 
 A portable arcade game console inspired by the Game Boy, built from scratch with a LILYGO ESP32-S3, basic electronic components, a custom PCB, a 3D-printed enclosure, and a modular C++ firmware with six games.
 
-[Português](./README-pt.md) · [Why This Exists](#01-why-this-exists) · [Features](#02-features) · [Hardware](#03-hardware) · [PCB](#04-custom-pcb) · [Enclosure](#05-enclosure) · [Build & Upload](#06-build--upload) · [Structure](#07-project-structure) · [Author](#08-author)
+[Why This Exists](#-why-this-exists) · [Features](#-features) · [Hardware](#-hardware) · [PCB](#-custom-pcb) · [Enclosure](#-enclosure) · [Build & Upload](#-build--upload) · [Structure](#-project-structure) · [Author](#-author)
 
 ---
 
-## 01. Why This Exists
+## ▸ Why This Exists
 
 LoverBoy is a personal educational project, started with the materials and maker space at Colégio Técnico da UFMG (Coltec) and still evolving through my Computer Science undergraduate studies (DCC/UFMG). It aims to build a robust, modular hardware and software platform while developing practical skills in:
 
@@ -25,7 +27,7 @@ LoverBoy is a personal educational project, started with the materials and maker
 
 ---
 
-## 02. Features
+## ▸ Features
 
 - **Six games:** Crossy, Flappy, Frogger, Genius, Snake, and Tetris at ~60 FPS with flicker-free delta rendering.
 - **Persistent highscores:** Top 3 per game saved to Flash, with an arcade-style 3-initial entry screen.
@@ -34,11 +36,11 @@ LoverBoy is a personal educational project, started with the materials and maker
 - **Bilingual UI:** English (default) and Brazilian Portuguese, with accented letters on the retro pixel font.
 - **Non-blocking audio & responsive input:** State-machine melodies and debounced, auto-repeating controls that never stall game logic.
 
-See the [Firmware Architecture Guide](docs/FIRMWARE.md) for managers, code layout, and how to add a game.
+Architecture, code layout, and how to add a game: **[Firmware Documentation](firmware/README.md)**.
 
 ---
 
-## 03. Hardware
+## ▸ Hardware
 
 | Part | Details |
 |---|---|
@@ -51,7 +53,7 @@ See the [Firmware Architecture Guide](docs/FIRMWARE.md) for managers, code layou
 
 ---
 
-## 04. Custom PCB
+## ▸ Custom PCB
 
 A single-layer carrier board connects the T-Display-S3, buttons, buzzer, power switch, and TP4056 charger. Wide traces and clearances allow both in-house fabrication (CNC milling / laser) and commercial PCB fabs.
 
@@ -64,7 +66,7 @@ Gerbers, BOM, EDA sources, pinout table, and fabrication parameters: **[PCB Docu
 
 ---
 
-## 05. Enclosure
+## ▸ Enclosure
 
 A two-piece enclosure modeled in Onshape and engineered for FDM printing without supports.
 
@@ -76,7 +78,7 @@ STL meshes, STEP source, slicing settings, and assembly steps: **[Case Documenta
 
 ---
 
-## 06. Build & Upload
+## ▸ Build & Upload
 
 Fastest path with `arduino-cli`:
 
@@ -85,27 +87,24 @@ arduino-cli compile --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 ```
 
-On Windows (Arduino IDE) or WSL (`./build_and_upload.sh -p COM7`), see the **[Build & Upload Guide](docs/BUILDING.md)**.
+On Windows (Arduino IDE) or WSL (`./build_and_upload.sh -p COM7`), see the **[Firmware Documentation](firmware/README.md#-build--upload)**.
 
 ---
 
-## 07. Project Structure
+## ▸ Project Structure
 
 ```text
 loverboy/
 ├── README.md / README-pt.md        # Project overview (English / Portuguese)
 ├── LoverBoy_logo.png
 ├── build_and_upload.sh             # WSL one-command build & flash script
-├── docs/
-│   ├── FIRMWARE.md / -pt.md        # Firmware architecture & code structure
-│   └── BUILDING.md / -pt.md        # Build & upload guide
-├── firmware/LoverBoy/              # Arduino sketch (core, games, ui, localization)
-├── pcb/                            # Gerbers, BOM, schematic, EasyEDA sources
-└── case/                           # STL meshes, STEP source, renders
+├── firmware/                       # Arduino sketch (core, games, UI, i18n) & docs
+├── pcb/                            # Gerbers, BOM, schematic, EasyEDA sources & docs
+└── case/                           # STL meshes, STEP source, renders & docs
 ```
 
 ---
 
-## 08. Author
+## ▸ Author
 
 - **[Vítor Paixão](https://github.com/paixonite)**

@@ -1,8 +1,10 @@
 # LoverBoy
 
-[![Status: em desenvolvimento](https://img.shields.io/badge/status-em%20desenvolvimento-yellow.svg)](#02-recursos)
-[![Plataforma: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#03-hardware)
-[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#06-compilar-e-gravar)
+[![Status: em desenvolvimento](https://img.shields.io/badge/status-em%20desenvolvimento-yellow.svg)](#-recursos)
+[![Plataforma: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#-hardware)
+[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#-compilar-e-gravar)
+
+**Idioma:** [English](./README.md) | Português
 
 > *Um projeto de paixão.*
 
@@ -10,11 +12,11 @@
 
 Um console portátil estilo arcade inspirado no Game Boy, construído do zero com uma LILYGO ESP32-S3, componentes eletrônicos básicos, uma PCB customizada, uma carcaça impressa em 3D e um firmware C++ modular com seis jogos.
 
-[English](./README.md) · [Por que existe](#01-por-que-existe) · [Recursos](#02-recursos) · [Hardware](#03-hardware) · [PCB](#04-pcb-customizada) · [Carcaça](#05-carcaça) · [Compilar e Gravar](#06-compilar-e-gravar) · [Estrutura](#07-estrutura-do-projeto) · [Autor](#08-autor)
+[Por que existe](#-por-que-existe) · [Recursos](#-recursos) · [Hardware](#-hardware) · [PCB](#-pcb-customizada) · [Carcaça](#-carcaça) · [Compilar e Gravar](#-compilar-e-gravar) · [Estrutura](#-estrutura-do-projeto) · [Autor](#-autor)
 
 ---
 
-## 01. Por que existe
+## ▸ Por que existe
 
 O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o espaço maker do Colégio Técnico da UFMG (Coltec) e em constante evolução durante minha graduação em Ciência da Computação (DCC/UFMG). O objetivo é criar uma plataforma modular e robusta de hardware e software, desenvolvendo habilidades práticas em:
 
@@ -25,7 +27,7 @@ O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o esp
 
 ---
 
-## 02. Recursos
+## ▸ Recursos
 
 - **Seis jogos:** Crossy, Flappy, Frogger, Genius, Snake e Tetris a ~60 FPS com renderização por diferença, sem cintilação.
 - **Recordes persistentes:** Top 3 de cada jogo salvo na Flash, com tela estilo arcade para inserir 3 iniciais.
@@ -34,11 +36,11 @@ O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o esp
 - **Interface bilíngue:** Inglês (padrão) e Português do Brasil, com letras acentuadas na fonte pixelada retrô.
 - **Áudio não-bloqueante e controles responsivos:** Melodias por máquina de estados e botões com debounce e repetição automática que nunca travam a lógica dos jogos.
 
-Veja o [Guia de Arquitetura do Firmware](docs/FIRMWARE-pt.md) para gerenciadores, estrutura do código e como adicionar um jogo.
+Arquitetura, estrutura do código e como adicionar um jogo: **[Documentação do Firmware](firmware/README-pt.md)**.
 
 ---
 
-## 03. Hardware
+## ▸ Hardware
 
 | Peça | Detalhes |
 |---|---|
@@ -51,7 +53,7 @@ Veja o [Guia de Arquitetura do Firmware](docs/FIRMWARE-pt.md) para gerenciadores
 
 ---
 
-## 04. PCB Customizada
+## ▸ PCB Customizada
 
 Uma placa-mãe de camada única conecta a T-Display-S3, botões, buzzer, chave liga/desliga e o carregador TP4056. Trilhas e isolamentos largos permitem tanto a fabricação local (fresadora CNC / laser) quanto a encomenda em fábricas comerciais.
 
@@ -64,7 +66,7 @@ Gerbers, BOM, fontes EDA, tabela de pinagem e parâmetros de fabricação: **[Do
 
 ---
 
-## 05. Carcaça
+## ▸ Carcaça
 
 Uma carcaça em duas partes modelada no Onshape e projetada para impressão 3D FDM sem suportes.
 
@@ -76,7 +78,7 @@ Meshes STL, fonte STEP, configurações de fatiamento e montagem: **[Documentaç
 
 ---
 
-## 06. Compilar e Gravar
+## ▸ Compilar e Gravar
 
 Caminho mais rápido com `arduino-cli`:
 
@@ -85,27 +87,24 @@ arduino-cli compile --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 ```
 
-No Windows (Arduino IDE) ou no WSL (`./build_and_upload.sh -p COM7`), veja o **[Guia de Compilação e Gravação](docs/BUILDING-pt.md)**.
+No Windows (Arduino IDE) ou no WSL (`./build_and_upload.sh -p COM7`), veja a **[Documentação do Firmware](firmware/README-pt.md#-compilar-e-gravar)**.
 
 ---
 
-## 07. Estrutura do Projeto
+## ▸ Estrutura do Projeto
 
 ```text
 loverboy/
 ├── README.md / README-pt.md        # Visão geral (inglês / português)
 ├── LoverBoy_logo.png
 ├── build_and_upload.sh             # Script WSL de compilação e gravação em 1 comando
-├── docs/
-│   ├── FIRMWARE.md / -pt.md        # Arquitetura e estrutura do firmware
-│   └── BUILDING.md / -pt.md        # Guia de compilação e gravação
-├── firmware/LoverBoy/              # Sketch Arduino (core, games, ui, localization)
-├── pcb/                            # Gerbers, BOM, esquemático, fontes EasyEDA
-└── case/                           # Meshes STL, fonte STEP, renders
+├── firmware/                       # Sketch Arduino (core, games, UI, i18n) & docs
+├── pcb/                            # Gerbers, BOM, esquemático, fontes EasyEDA & docs
+└── case/                           # Meshes STL, fonte STEP, renders & docs
 ```
 
 ---
 
-## 08. Autor
+## ▸ Autor
 
 - **[Vítor Paixão](https://github.com/paixonite)**

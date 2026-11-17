@@ -1,8 +1,14 @@
 # LoverBoy - Custom PCB & Electronics
 
-[Português](./README-pt.md) · [Overview](#01-overview) · [Board Layout & Schematic](#02-board-layout--schematic) · [Bill of Materials (BOM)](#03-bill-of-materials-bom) · [Pinout & Firmware Mapping](#04-pinout--firmware-mapping) · [Manufacturing & Fabrication Guide](#05-manufacturing--fabrication-guide) · [Editing the Source Files (EasyEDA)](#06-editing-the-source-files-easyeda) · [Directory Structure](#07-directory-structure) · [Back to README](../README.md)
-
 [![EDA](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue)](./source/)
+
+**Language:** English | [Português](./README-pt.md)
+
+A single-layer through-hole carrier board designed in EasyEDA that connects the LILYGO T-Display-S3, buttons, buzzer, power switch, and TP4056 USB-C charger.
+
+[Overview](#-overview) · [Board Layout & Schematic](#-board-layout--schematic) · [Bill of Materials (BOM)](#-bill-of-materials-bom) · [Pinout & Firmware Mapping](#-pinout--firmware-mapping) · [Manufacturing & Fabrication Guide](#-manufacturing--fabrication-guide) · [Editing the Source Files (EasyEDA)](#-editing-the-source-files-easyeda) · [Directory Structure](#-directory-structure) · [Back to README](../README.md)
+
+---
 
 > [!WARNING]
 > **Hardware Rev 1.0 Errata (Known Issues):**
@@ -12,7 +18,7 @@
 
 ---
 
-## 01. Overview
+## ▸ Overview
 
 The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade buttons (D-Pad, A, B, Start, Select), a passive piezo buzzer, a power slide switch, and a TP4056 USB-C LiPo charging circuit onto a single handheld carrier board.
 
@@ -20,7 +26,7 @@ The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade bu
 
 ---
 
-## 02. Board Layout & Schematic
+## ▸ Board Layout & Schematic
 
 <p align="center">
   <img src="./EspBoy_PCB_Layout.png" width="48%" alt="LoverBoy PCB Layout" />
@@ -28,12 +34,12 @@ The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade bu
 </p>
 
 - **Vector PDFs for Inspection / Printing:**
-  - [📄 `EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
-  - [📄 `EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
+  - [`EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
+  - [`EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
 
 ---
 
-## 03. Bill of Materials (BOM)
+## ▸ Bill of Materials (BOM)
 
 The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
@@ -49,7 +55,7 @@ The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
 ---
 
-## 04. Pinout & Firmware Mapping
+## ▸ Pinout & Firmware Mapping
 
 All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/pins.h`](../firmware/LoverBoy/src/core/pins.h):
 
@@ -70,7 +76,7 @@ All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/p
 
 ---
 
-## 05. Manufacturing & Fabrication Guide
+## ▸ Manufacturing & Fabrication Guide
 
 The board was designed with generous trace widths and clearances so it can be produced either **in-house at a maker space** or ordered from a **commercial PCB fab house** using the exact same files.
 
@@ -96,7 +102,7 @@ To order professionally fabricated boards with solder mask, upload [`gerbers/Ger
 
 ---
 
-## 06. Editing the Source Files (EasyEDA)
+## ▸ Editing the Source Files (EasyEDA)
 
 The editable schematic and PCB layout live in [`source/`](./source/):
 - `source/SCH_EspBoy.json` — Schematic file
@@ -109,18 +115,18 @@ The editable schematic and PCB layout live in [`source/`](./source/):
 
 ---
 
-## 07. Directory Structure
+## ▸ Directory Structure
 
 ```text
 pcb/
-|-- README.md                                       # This documentation (English)
-|-- README-pt.md                                    # Portuguese documentation
-|-- EspBoy_BOM.csv                                  # Bill of Materials with LCSC part numbers
-|-- EspBoy_PCB_Layout.pdf / .png                    # 2D board layout exports
-|-- EspBoy_Schematic.pdf / .png                     # Circuit schematic exports
-|-- gerbers/
-|   `-- Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip     # Fabrication-ready Gerber & Excellon drill archive
-`-- source/
-    |-- PCB_EspBoy.json                             # EasyEDA Standard PCB layout source
-    `-- SCH_EspBoy.json                             # EasyEDA Standard schematic source
+├── README.md                                       # This documentation (English)
+├── README-pt.md                                    # Portuguese documentation
+├── EspBoy_BOM.csv                                  # Bill of Materials with LCSC part numbers
+├── EspBoy_PCB_Layout.pdf / .png                    # 2D board layout exports
+├── EspBoy_Schematic.pdf / .png                     # Circuit schematic exports
+├── gerbers/
+│   └── Gerber_EspBoy_PCB_EspBoy_2025-10-09.zip     # Fabrication-ready Gerber & Excellon drill archive
+└── source/
+    ├── PCB_EspBoy.json                             # EasyEDA Standard PCB layout source
+    └── SCH_EspBoy.json                             # EasyEDA Standard schematic source
 ```

@@ -1,16 +1,18 @@
 # LoverBoy - Carcaça & Impressão 3D
 
-[English](./README.md) · [Renderizações](#01-renderizações) · [Parafusos & Ferragens (BOM)](#02-parafusos--ferragens-bom) · [Orientações de Impressão 3D](#03-orientações-de-impressão-3d) · [Guia de Montagem](#04-guia-de-montagem) · [Estrutura de Diretórios](#05-estrutura-de-diretórios) · [Modelo Paramétrico no Onshape](#06-modelo-paramétrico-no-onshape) · [Voltar ao README](../README-pt.md)
-
 [![Onshape](https://img.shields.io/badge/CAD-Onshape-blue?logo=onshape)](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)
+
+**Idioma:** [English](./README.md) | Português
 
 ![LoverBoy Case Assembly](./renders/render_assembly.png)
 
 Carcaça personalizada em duas partes modelada no Onshape para o console portátil **LoverBoy**. Ela acomoda a PCB customizada, a placa LILYGO T-Display-S3, os botões táteis (push buttons), o buzzer, a chave liga/desliga, o módulo de carregamento USB-C TP4056 e a bateria recarregável LiPo em um formato portátil retro e ergonômico.
 
+[Renderizações](#-renderizações) · [Parafusos & Ferragens (BOM)](#-parafusos--ferragens-bom) · [Orientações de Impressão 3D](#-orientações-de-impressão-3d) · [Guia de Montagem](#-guia-de-montagem) · [Estrutura de Diretórios](#-estrutura-de-diretórios) · [Modelo Paramétrico no Onshape](#-modelo-paramétrico-no-onshape) · [Voltar ao README](../README-pt.md)
+
 ---
 
-## 01. Renderizações
+## ▸ Renderizações
 
 <p align="center">
   <img src="./renders/render_front.png" width="48%" alt="Render da Tampa Frontal" />
@@ -19,7 +21,7 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
 
 ---
 
-## 02. Parafusos & Ferragens (BOM)
+## ▸ Parafusos & Ferragens (BOM)
 
 | Item | Quantidade | Descrição | Observações |
 | :--- | :---: | :--- | :--- |
@@ -28,7 +30,7 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
 
 ---
 
-## 03. Orientações de Impressão 3D
+## ▸ Orientações de Impressão 3D
 
 A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões de aproximadamente 13x8cm.
 
@@ -43,7 +45,7 @@ A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões
 
 ---
 
-## 04. Guia de Montagem
+## ▸ Guia de Montagem
 
 1. **Inserir as Porcas M2:** Coloque as 4 porcas M2 nos seus alojamentos dentro da tampa traseira.
 2. **Posicionar a PCB:** Encaixe a PCB montada do LoverBoy na tampa frontal e feche com a tampa traseira.
@@ -51,26 +53,26 @@ A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões
 
 ---
 
-## 05. Estrutura de Diretórios
+## ▸ Estrutura de Diretórios
 
 ```text
 case/
-|-- README.md                   # Documentação em Inglês
-|-- README-pt.md                # Esta documentação (Português)
-|-- source/
-|   `-- assembly.step           # Montagem em modelo sólido STEP (padrão universal CAD)
-|-- stl/
-|   |-- front_cover.stl         # Mesh da tampa frontal pronta para fatiamento
-|   `-- back_cover.stl          # Mesh da tampa traseira pronta para fatiamento
-`-- renders/
-    |-- render_assembly.png     # Render da carcaça montada
-    |-- render_front.png        # Render da tampa frontal
-    `-- render_back.png         # Render da tampa traseira
+├── README.md                   # Documentação em Inglês
+├── README-pt.md                # Esta documentação (Português)
+├── source/
+│   └── assembly.step           # Montagem em modelo sólido STEP (padrão universal CAD)
+├── stl/
+│   ├── front_cover.stl         # Mesh da tampa frontal pronta para fatiamento
+│   └── back_cover.stl          # Mesh da tampa traseira pronta para fatiamento
+└── renders/
+    ├── render_assembly.png     # Render da carcaça montada
+    ├── render_front.png        # Render da tampa frontal
+    └── render_back.png         # Render da tampa traseira
 ```
 
 ---
 
-## 06. Modelo Paramétrico no Onshape
+## ▸ Modelo Paramétrico no Onshape
 
 O modelo paramétrico original é mantido no **Onshape**:
 - **Link Público no Onshape:** [LoverBoy Case no Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)

@@ -1,16 +1,18 @@
 # LoverBoy - Enclosure & 3D Printing
 
-[Português](./README-pt.md) · [Renders](#01-renders) · [Hardware & Fasteners (BOM)](#02-hardware--fasteners-bom) · [3D Printing Guidelines](#03-3d-printing-guidelines) · [Assembly Guide](#04-assembly-guide) · [Directory Structure](#05-directory-structure) · [Onshape Source Model](#06-onshape-source-model) · [Back to README](../README.md)
-
 [![Onshape](https://img.shields.io/badge/CAD-Onshape-blue?logo=onshape)](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)
+
+**Language:** English | [Português](./README-pt.md)
 
 ![LoverBoy Case Assembly](./renders/render_assembly.png)
 
 A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable game console. It holds the custom PCB, LILYGO T-Display-S3, tactile push buttons, buzzer, power slide switch, TP4056 USB-C charging board, and rechargeable LiPo battery into an ergonomic retro handheld form factor.
 
+[Renders](#-renders) · [Hardware & Fasteners (BOM)](#-hardware--fasteners-bom) · [3D Printing Guidelines](#-3d-printing-guidelines) · [Assembly Guide](#-assembly-guide) · [Directory Structure](#-directory-structure) · [Onshape Source Model](#-onshape-source-model) · [Back to README](../README.md)
+
 ---
 
-## 01. Renders
+## ▸ Renders
 
 <p align="center">
   <img src="./renders/render_front.png" width="48%" alt="Front Cover Render" />
@@ -19,7 +21,7 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
 
 ---
 
-## 02. Hardware & Fasteners (BOM)
+## ▸ Hardware & Fasteners (BOM)
 
 | Item | Quantity | Description | Notes |
 | :--- | :---: | :--- | :--- |
@@ -28,7 +30,7 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
 
 ---
 
-## 03. 3D Printing Guidelines
+## ▸ 3D Printing Guidelines
 
 The case is a very easy print at around 50g and 13x8cm in size.
 
@@ -43,7 +45,7 @@ The case is a very easy print at around 50g and 13x8cm in size.
 
 ---
 
-## 04. Assembly Guide
+## ▸ Assembly Guide
 
 1. **Insert M2 Nuts:** Place the 4x M2 hex nuts into their designated pockets inside the back cover.
 2. **Mount PCB:** Place the assembled LoverBoy PCB into the front cover, close it with the rear cover.
@@ -51,26 +53,26 @@ The case is a very easy print at around 50g and 13x8cm in size.
 
 ---
 
-## 05. Directory Structure
+## ▸ Directory Structure
 
 ```text
 case/
-|-- README.md                   # This documentation (English)
-|-- README-pt.md                # Portuguese documentation
-|-- source/
-|   `-- assembly.step           # Universal STEP solid body assembly (CAD exchange)
-|-- stl/
-|   |-- front_cover.stl         # Slicer-ready front faceplate
-|   `-- back_cover.stl          # Slicer-ready back shell
-`-- renders/
-    |-- render_assembly.png     # Full assembled case render
-    |-- render_front.png        # Front cover render
-    `-- render_back.png         # Back cover render
+├── README.md                   # This documentation (English)
+├── README-pt.md                # Portuguese documentation
+├── source/
+│   └── assembly.step           # Universal STEP solid body assembly (CAD exchange)
+├── stl/
+│   ├── front_cover.stl         # Slicer-ready front faceplate
+│   └── back_cover.stl          # Slicer-ready back shell
+└── renders/
+    ├── render_assembly.png     # Full assembled case render
+    ├── render_front.png        # Front cover render
+    └── render_back.png         # Back cover render
 ```
 
 ---
 
-## 06. Onshape Source Model
+## ▸ Onshape Source Model
 
 The master parametric CAD model is maintained on **Onshape**:
 - **Public Onshape Document:** [LoverBoy Case on Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)
