@@ -83,7 +83,7 @@ As definições de pinos ficam em [`pins.h`](./LoverBoy/src/core/pins.h); o mape
 
 Todos os três métodos usam o FQBN da placa `esp32:esp32:lilygo_t_display_s3`.
 
-### Linux Nativo (`arduino-cli`)
+### Opção 1: Linux Nativo (`arduino-cli`)
 
 Ideal para computadores com Linux nativo:
 
@@ -95,7 +95,7 @@ arduino-cli compile --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
 ```
 
-### Windows Nativo (Arduino IDE)
+### Opção 2: Windows Nativo (Arduino IDE)
 
 Ideal para desenvolvedores no Windows que preferem uma interface gráfica:
 
@@ -104,7 +104,7 @@ Ideal para desenvolvedores no Windows que preferem uma interface gráfica:
 3. **Configuração da tela:** Em `TFT_eSPI/User_Setup_Select.h`, descomente `#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>`.
 4. **Compilar e gravar:** Abra `firmware/LoverBoy/LoverBoy.ino`, selecione a placa **LilyGo T-Display-S3** e a porta `COMx` correspondente, e clique em **Carregar** (*Upload*).
 
-### Terminal WSL (`build_and_upload.sh`)
+### Opção 3: Terminal WSL (`build_and_upload.sh`)
 
 Ideal para quem desenvolve dentro do terminal Linux do WSL no Windows. O script [`build_and_upload.sh`](../build_and_upload.sh) na raiz compila com o `arduino-cli` no WSL, prepara os binários e grava com o `esptool.exe` do Windows:
 
