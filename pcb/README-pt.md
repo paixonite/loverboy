@@ -8,23 +8,17 @@ Placa-mãe through-hole de camada única projetada no EasyEDA que integra a LILY
 
 [Visão Geral](#-visão-geral) · [Layout da Placa & Esquemático](#-layout-da-placa--esquemático) · [Lista de Materiais (BOM)](#-lista-de-materiais-bom) · [Pinagem & Mapeamento no Firmware](#-pinagem--mapeamento-no-firmware) · [Guia de Fabricação & Manufatura](#-guia-de-fabricação--manufatura) · [Editando os Arquivos Fonte (EasyEDA)](#-editando-os-arquivos-fonte-easyeda) · [Estrutura de Diretórios](#-estrutura-de-diretórios) · [Voltar ao README](../README-pt.md)
 
----
-
 > [!WARNING]
 > **Errata da Revisão 1.0 de Hardware (Problemas Conhecidos):**
 > Os arquivos atuais da placa `v1.0` nesta pasta possuem duas erratas de hardware conhecidas que serão corrigidas no **redesign da PCB v2.0**:
 > 1. **Curto no Roteamento dos Botões ([Issue #7](https://github.com/paixonite/loverboy/issues/7)):** Um erro no traçado faz com que os botões fechem curto entre `3V3` e `GND` ao serem pressionados, em vez de passarem pelos resistores de `10kΩ` (`R1–R8`). Nas placas `v1.0` fabricadas, a correção consiste em cortar a trilha direta logo após cada botão e soldar a conexão passando pelo respectivo resistor.
 > 2. **Desalinhamento do Footprint do TP4056 ([Issue #8](https://github.com/paixonite/loverboy/issues/8)):** A medida horizontal do módulo TP4056 ficou cerca de 2 mm menor do que o componente real, fazendo o módulo ultrapassar levemente a borda da placa e deslocando a tela em ~2 mm para a esquerda do centro na carcaça `v1.0` ([Issue #9](https://github.com/paixonite/loverboy/issues/9)).
 
----
-
 ## ▸ Visão Geral
 
 A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis estilo arcade (D-Pad, A, B, Start, Select), um buzzer passivo piezoelétrico, uma chave deslizante liga/desliga e um circuito de recarga LiPo USB-C TP4056 em uma única placa-mãe portátil.
 
 > **Nota sobre a Nomenclatura (`EspBoy`):** A Revisão 1.0 do hardware foi originalmente projetada e prototipada sob o nome provisório *EspBoy* antes do projeto receber o nome oficial **LoverBoy**. Todos os arquivos fonte, esquemáticos, BOM e Gerbers da `v1.0` mantêm o prefixo `EspBoy_*`; a futura versão `v2.0` passará a utilizar o prefixo `LoverBoy_*`.
-
----
 
 ## ▸ Layout da Placa & Esquemático
 
@@ -36,8 +30,6 @@ A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis
 - **PDFs Vetoriais para Inspeção / Impressão:**
   - [`EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
   - [`EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
-
----
 
 ## ▸ Lista de Materiais (BOM)
 
@@ -52,8 +44,6 @@ A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 | `SWITCH` | **Chave Deslizante (Slide Switch)** | 1 | `SW-TH_SS12F44G4` | `SS12F44G5` | `C22435641` |
 | `USB-C` | **Módulo Carregador TP4056 USB-C** | 1 | Módulo THT Customizado | TP4056 1S LiPo | — |
 | *(Externo)* | **Bateria LiPo 3.7V** | 1 | Soldada nos pinos `BAT+`/`BAT-` do TP4056 | LiPo Recarregável 3.7V | — |
-
----
 
 ## ▸ Pinagem & Mapeamento no Firmware
 
@@ -73,8 +63,6 @@ Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/
 | *(Interno)* | Habilitação de Bateria | `GPIO 15` | `POWER_ENABLE_PIN` | Latch interno de energia da T-Display-S3 |
 | *(Interno)* | Leitura ADC da Bateria | `GPIO 4` | `BATTERY_SENSE_PIN` | Divisor de tensão interno no ADC |
 | *(Interno)* | Backlight da Tela TFT | `GPIO 38` | `TFT_BL_PIN` | Controle PWM de brilho da tela ST7789 |
-
----
 
 ## ▸ Guia de Fabricação & Manufatura
 
@@ -100,8 +88,6 @@ Para encomendar placas industrializadas com máscara de solda, basta enviar o ar
 | **Acabamento Superficial** | HASL (com ou sem chumbo) ou ENIG |
 | **Cor da Máscara de Solda** | Qualquer cor |
 
----
-
 ## ▸ Editando os Arquivos Fonte (EasyEDA)
 
 Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./source/):
@@ -112,8 +98,6 @@ Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./so
 1. Acesse o **[EasyEDA Standard](https://easyeda.com/editor)** (no navegador ou aplicativo desktop, criado na versão `v6.5.51`).
 2. Vá no menu **File $\rightarrow$ Open $\rightarrow$ EasyEDA...**
 3. Selecione `SCH_EspBoy.json` e `PCB_EspBoy.json` para visualizar, alterar trilhas ou exportar novos arquivos Gerber.
-
----
 
 ## ▸ Estrutura de Diretórios
 

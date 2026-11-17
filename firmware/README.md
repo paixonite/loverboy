@@ -9,8 +9,6 @@ LoverBoy's C++ firmware (`firmware/LoverBoy/`) is organized by responsibility: a
 
 [Architecture](#-architecture) · [Features](#-features) · [Code Structure](#-code-structure) · [Build & Upload](#-build--upload) · [Adding a Game](#-adding-a-game) · [Back to README](../README.md)
 
----
-
 ## ▸ Architecture
 
 `LoverBoyCore` is the global state orchestrator (Menu vs Game) and delegates to specialized managers:
@@ -27,8 +25,6 @@ LoverBoy's C++ firmware (`firmware/LoverBoy/`) is organized by responsibility: a
 
 New games inherit from the abstract `Game` superclass, which provides the standard state machine and template methods (Template Method pattern).
 
----
-
 ## ▸ Features
 
 - **Included games:** Crossy, Flappy, Frogger, Genius, Snake, and Tetris at ~60 FPS.
@@ -38,8 +34,6 @@ New games inherit from the abstract `Game` superclass, which provides the standa
 - **Settings menu:** Volume, screen brightness, color theme (5 palettes), language, and highscore reset. The mute state persists across reboots, so the buzzer never blares at startup.
 - **Multi-language UI:** English (default) and Brazilian Portuguese. Every on-screen string lives in one table (`i18n_strings.h`).
 - **Non-blocking audio:** Background melodies and sound effects run on a state machine without freezing game logic.
-
----
 
 ## ▸ Code Structure
 
@@ -77,11 +71,15 @@ firmware/
 
 Pin definitions live in [`pins.h`](./LoverBoy/src/core/pins.h); the matching PCB mapping is in the [PCB documentation](../pcb/README.md#-pinout--firmware-mapping).
 
----
-
 ## ▸ Build & Upload
 
 All three methods target the board FQBN `esp32:esp32:lilygo_t_display_s3`.
+
+### Prerequisites (All Platforms)
+
+1. **Board support:** Install the **ESP32** board core (`esp32:esp32`) via Arduino Boards Manager or `arduino-cli`.
+2. **Display library:** Install **TFT_eSPI** by Bodmer.
+3. **Display configuration:** In `TFT_eSPI/User_Setup_Select.h`, uncomment `#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>`.
 
 ### Option 1: Native Linux (`arduino-cli`)
 
@@ -99,10 +97,9 @@ arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmwa
 
 Ideal for Windows users who prefer a graphical interface:
 
-1. **Board support:** Install **ESP32** board support in the Boards Manager.
-2. **Libraries:** Install the **TFT_eSPI** library by Bodmer.
-3. **Display configuration:** In `TFT_eSPI/User_Setup_Select.h`, uncomment `#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>`.
-4. **Compile & upload:** Open `firmware/LoverBoy/LoverBoy.ino`, select the **LilyGo T-Display-S3** board and the matching `COMx` port, then click **Upload**.
+1. Open `firmware/LoverBoy/LoverBoy.ino` in the Arduino IDE.
+2. Select the **LilyGo T-Display-S3** board and the matching `COMx` port.
+3. Click **Upload**.
 
 ### Option 3: WSL Terminal (`build_and_upload.sh`)
 
@@ -121,8 +118,6 @@ Ideal for developers working inside a WSL (Linux) terminal on Windows. The root 
 | `-c`, `--cli <PATH>` | `arduino-cli` binary in WSL | auto-detected |
 | `-e`, `--esptool <PATH>` | `esptool.exe` path on Windows | auto-detected |
 | `-h`, `--help` | Show help and exit | |
-
----
 
 ## ▸ Adding a Game
 

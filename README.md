@@ -14,8 +14,6 @@ A portable arcade game console inspired by the Game Boy, built from scratch with
 
 [Why This Exists](#-why-this-exists) · [Features](#-features) · [Hardware](#-hardware) · [PCB](#-custom-pcb) · [Enclosure](#-enclosure) · [Build & Upload](#-build--upload) · [Structure](#-project-structure) · [Author](#-author)
 
----
-
 ## ▸ Why This Exists
 
 LoverBoy is a personal educational project, started with the materials and maker space at Colégio Técnico da UFMG (Coltec) and still evolving through my Computer Science undergraduate studies (DCC/UFMG). It aims to build a robust, modular hardware and software platform while developing practical skills in:
@@ -24,8 +22,6 @@ LoverBoy is a personal educational project, started with the materials and maker
 - **Low-level programming:** Direct interaction with GPIOs, PWM timers, and microcontroller peripherals.
 - **Hardware development:** Circuit assembly, soldering, component integration, and rechargeable battery management.
 - **Modeling & 3D printing:** A custom ergonomic enclosure designed in Onshape and printed via FDM.
-
----
 
 ## ▸ Features
 
@@ -38,8 +34,6 @@ LoverBoy is a personal educational project, started with the materials and maker
 
 Architecture, code layout, and how to add a game: **[Firmware Documentation](firmware/README.md)**.
 
----
-
 ## ▸ Hardware
 
 | Part | Details |
@@ -50,8 +44,6 @@ Architecture, code layout, and how to add a game: **[Firmware Documentation](fir
 | **Power** | 3.7V LiPo battery, TP4056 USB-C charging module, slide switch |
 | **PCB** | Single-layer through-hole carrier board designed in EasyEDA ([`pcb/`](pcb/)) |
 | **Enclosure** | Custom two-piece 3D-printed shell designed in Onshape ([`case/`](case/)) |
-
----
 
 ## ▸ Custom PCB
 
@@ -64,8 +56,6 @@ A single-layer carrier board connects the T-Display-S3, buttons, buzzer, power s
 
 Gerbers, BOM, EDA sources, pinout table, and fabrication parameters: **[PCB Documentation](pcb/README.md)**.
 
----
-
 ## ▸ Enclosure
 
 A two-piece enclosure modeled in Onshape and engineered for FDM printing without supports.
@@ -75,8 +65,6 @@ A two-piece enclosure modeled in Onshape and engineered for FDM printing without
 </p>
 
 STL meshes, STEP source, slicing settings, and assembly steps: **[Case Documentation](case/README.md)**. The live parametric model is on [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
-
----
 
 ## ▸ Build & Upload
 
@@ -89,8 +77,6 @@ arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmwa
 
 On Windows (Arduino IDE) or WSL (`./build_and_upload.sh -p COM7`), see the **[Firmware Documentation](firmware/README.md#-build--upload)**.
 
----
-
 ## ▸ Project Structure
 
 ```text
@@ -102,8 +88,6 @@ loverboy/
 ├── pcb/                            # Gerbers, BOM, schematic, EasyEDA sources & docs
 └── case/                           # STL meshes, STEP source, renders & docs
 ```
-
----
 
 ## ▸ Author
 

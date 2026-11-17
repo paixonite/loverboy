@@ -10,8 +10,6 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
 
 [Renderizações](#-renderizações) · [Parafusos & Ferragens (BOM)](#-parafusos--ferragens-bom) · [Orientações de Impressão 3D](#-orientações-de-impressão-3d) · [Guia de Montagem](#-guia-de-montagem) · [Estrutura de Diretórios](#-estrutura-de-diretórios) · [Modelo Paramétrico no Onshape](#-modelo-paramétrico-no-onshape) · [Voltar ao README](../README-pt.md)
 
----
-
 ## ▸ Renderizações
 
 <p align="center">
@@ -19,16 +17,12 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
   <img src="./renders/render_back.png" width="48%" alt="Render da Tampa Traseira" />
 </p>
 
----
-
 ## ▸ Parafusos & Ferragens (BOM)
 
 | Item | Quantidade | Descrição | Observações |
 | :--- | :---: | :--- | :--- |
 | **Parafusos M2** | 4 | M2 × 16mm (Cabeça panela ou sextavada) | Atravessa a tampa frontal em direção à traseira |
 | **Porcas M2** | 4 | Porcas sextavadas M2 padrão | Encaixadas nos alojamentos da tampa traseira |
-
----
 
 ## ▸ Orientações de Impressão 3D
 
@@ -43,15 +37,11 @@ A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões
 | **Orientação de Impressão** | Imprimir ambas as peças **com a face plana apoiada diretamente na mesa** |
 | **Suportes** | **Não são necessários!** Projetado para imprimir sem qualquer suporte |
 
----
-
 ## ▸ Guia de Montagem
 
 1. **Inserir as Porcas M2:** Coloque as 4 porcas M2 nos seus alojamentos dentro da tampa traseira.
 2. **Posicionar a PCB:** Encaixe a PCB montada do LoverBoy na tampa frontal e feche com a tampa traseira.
 3. **Fixar:** Insira os 4 parafusos M2 × 16mm pelos furos dos cantos da tampa frontal e rosqueie nas porcas M2 da tampa traseira.
-
----
 
 ## ▸ Estrutura de Diretórios
 
@@ -69,8 +59,6 @@ case/
     ├── render_front.png        # Render da tampa frontal
     └── render_back.png         # Render da tampa traseira
 ```
-
----
 
 ## ▸ Modelo Paramétrico no Onshape
 

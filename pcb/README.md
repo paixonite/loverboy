@@ -8,23 +8,17 @@ A single-layer through-hole carrier board designed in EasyEDA that connects the 
 
 [Overview](#-overview) · [Board Layout & Schematic](#-board-layout--schematic) · [Bill of Materials (BOM)](#-bill-of-materials-bom) · [Pinout & Firmware Mapping](#-pinout--firmware-mapping) · [Manufacturing & Fabrication Guide](#-manufacturing--fabrication-guide) · [Editing the Source Files (EasyEDA)](#-editing-the-source-files-easyeda) · [Directory Structure](#-directory-structure) · [Back to README](../README.md)
 
----
-
 > [!WARNING]
 > **Hardware Rev 1.0 Errata (Known Issues):**
 > The current `v1.0` board files in this folder contain two known hardware errata that are scheduled to be fixed in the upcoming **v2.0 PCB redesign**:
 > 1. **Button Pull-Down Routing Short ([Issue #7](https://github.com/paixonite/loverboy/issues/7)):** A routing mistake causes the push buttons to short `3V3` to `GND` when pressed instead of routing through the `10kΩ` resistors (`R1–R8`). On fabricated `v1.0` boards, this is remediated by cutting the direct trace behind each button and soldering a bridge through the resistor.
 > 2. **TP4056 Footprint Offset ([Issue #8](https://github.com/paixonite/loverboy/issues/8)):** The TP4056 module footprint is ~2 mm narrower horizontally than the physical module, causing the module to slightly overhang the board edge and shifting the display ~2 mm left of center in the `v1.0` enclosure ([Issue #9](https://github.com/paixonite/loverboy/issues/9)).
 
----
-
 ## ▸ Overview
 
 The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade buttons (D-Pad, A, B, Start, Select), a passive piezo buzzer, a power slide switch, and a TP4056 USB-C LiPo charging circuit onto a single handheld carrier board.
 
 > **Note on File Naming (`EspBoy`):** Hardware Revision 1.0 was originally designed and prototyped under the working title *EspBoy* before the project was officially named **LoverBoy**. All `v1.0` source, schematic, BOM, and Gerber files retain the `EspBoy_*` prefix; the upcoming `v2.0` hardware release will transition to `LoverBoy_*`.
-
----
 
 ## ▸ Board Layout & Schematic
 
@@ -36,8 +30,6 @@ The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade bu
 - **Vector PDFs for Inspection / Printing:**
   - [`EspBoy_PCB_Layout.pdf`](./EspBoy_PCB_Layout.pdf)
   - [`EspBoy_Schematic.pdf`](./EspBoy_Schematic.pdf)
-
----
 
 ## ▸ Bill of Materials (BOM)
 
@@ -52,8 +44,6 @@ The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 | `SWITCH` | **Slide Switch** (Power ON/OFF) | 1 | `SW-TH_SS12F44G4` | `SS12F44G5` | `C22435641` |
 | `USB-C` | **TP4056 USB-C Charging Module** | 1 | Custom THT Module | TP4056 1S LiPo | — |
 | *(External)* | **3.7V LiPo Battery** | 1 | Wired to TP4056 `BAT+`/`BAT-` | 3.7V Rechargeable LiPo | — |
-
----
 
 ## ▸ Pinout & Firmware Mapping
 
@@ -74,8 +64,6 @@ All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/p
 | *(Internal)* | Battery ADC Sense | `GPIO 4` | `BATTERY_SENSE_PIN` | Internal voltage divider ADC |
 | *(Internal)* | TFT Backlight PWM | `GPIO 38` | `TFT_BL_PIN` | Internal 1.9" ST7789 backlight |
 
----
-
 ## ▸ Manufacturing & Fabrication Guide
 
 The board was designed with generous trace widths and clearances so it can be produced either **in-house at a maker space** or ordered from a **commercial PCB fab house** using the exact same files.
@@ -95,12 +83,10 @@ To order professionally fabricated boards with solder mask, upload [`gerbers/Ger
 | :--- | :--- |
 | **Base Material** | FR-4 |
 | **Layers** | 1 or 2 Layers (2 Layers is standard minimum pricing) |
-| **PCB Thickness** | **1.6 mm** (matches the [3D printed enclosure](../case/) clamping ribs) |
+| **PCB Thickness** | **1.6 mm** (matches the [3D printed enclosure](../case/README.md) clamping ribs) |
 | **Copper Weight** | 1 oz |
 | **Surface Finish** | HASL (with lead), Lead-Free HASL, or ENIG |
 | **Solder Mask** | Any color |
-
----
 
 ## ▸ Editing the Source Files (EasyEDA)
 
@@ -112,8 +98,6 @@ The editable schematic and PCB layout live in [`source/`](./source/):
 1. Open **[EasyEDA Standard](https://easyeda.com/editor)** (browser or desktop app, created in `v6.5.51`).
 2. Go to **File $\rightarrow$ Open $\rightarrow$ EasyEDA...**
 3. Select `SCH_EspBoy.json` and `PCB_EspBoy.json` to inspect, edit traces, or export updated Gerbers.
-
----
 
 ## ▸ Directory Structure
 

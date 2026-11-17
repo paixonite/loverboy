@@ -14,8 +14,6 @@ Um console portátil estilo arcade inspirado no Game Boy, construído do zero co
 
 [Por que existe](#-por-que-existe) · [Recursos](#-recursos) · [Hardware](#-hardware) · [PCB](#-pcb-customizada) · [Carcaça](#-carcaça) · [Compilar e Gravar](#-compilar-e-gravar) · [Estrutura](#-estrutura-do-projeto) · [Autor](#-autor)
 
----
-
 ## ▸ Por que existe
 
 O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o espaço maker do Colégio Técnico da UFMG (Coltec) e em constante evolução durante minha graduação em Ciência da Computação (DCC/UFMG). O objetivo é criar uma plataforma modular e robusta de hardware e software, desenvolvendo habilidades práticas em:
@@ -24,8 +22,6 @@ O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o esp
 - **Programação de baixo nível:** Interação direta com GPIOs, temporizadores PWM e periféricos do microcontrolador.
 - **Desenvolvimento de hardware:** Montagem de circuitos, soldagem, integração de componentes e bateria recarregável.
 - **Modelagem e impressão 3D:** Carcaça ergonômica personalizada projetada no Onshape e fabricada via impressão 3D FDM.
-
----
 
 ## ▸ Recursos
 
@@ -38,8 +34,6 @@ O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o esp
 
 Arquitetura, estrutura do código e como adicionar um jogo: **[Documentação do Firmware](firmware/README-pt.md)**.
 
----
-
 ## ▸ Hardware
 
 | Peça | Detalhes |
@@ -50,8 +44,6 @@ Arquitetura, estrutura do código e como adicionar um jogo: **[Documentação do
 | **Alimentação** | Bateria LiPo 3.7V, módulo de carga TP4056 USB-C e chave deslizante |
 | **PCB** | Placa-mãe through-hole de camada única projetada no EasyEDA ([`pcb/`](pcb/)) |
 | **Carcaça** | Carcaça personalizada em duas partes impressa em 3D, projetada no Onshape ([`case/`](case/)) |
-
----
 
 ## ▸ PCB Customizada
 
@@ -64,8 +56,6 @@ Uma placa-mãe de camada única conecta a T-Display-S3, botões, buzzer, chave l
 
 Gerbers, BOM, fontes EDA, tabela de pinagem e parâmetros de fabricação: **[Documentação da PCB](pcb/README-pt.md)**.
 
----
-
 ## ▸ Carcaça
 
 Uma carcaça em duas partes modelada no Onshape e projetada para impressão 3D FDM sem suportes.
@@ -75,8 +65,6 @@ Uma carcaça em duas partes modelada no Onshape e projetada para impressão 3D F
 </p>
 
 Meshes STL, fonte STEP, configurações de fatiamento e montagem: **[Documentação da Carcaça](case/README-pt.md)**. O modelo paramétrico está no [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
-
----
 
 ## ▸ Compilar e Gravar
 
@@ -89,8 +77,6 @@ arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmwa
 
 No Windows (Arduino IDE) ou no WSL (`./build_and_upload.sh -p COM7`), veja a **[Documentação do Firmware](firmware/README-pt.md#-compilar-e-gravar)**.
 
----
-
 ## ▸ Estrutura do Projeto
 
 ```text
@@ -102,8 +88,6 @@ loverboy/
 ├── pcb/                            # Gerbers, BOM, esquemático, fontes EasyEDA & docs
 └── case/                           # Meshes STL, fonte STEP, renders & docs
 ```
-
----
 
 ## ▸ Autor
 

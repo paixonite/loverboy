@@ -10,8 +10,6 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
 
 [Renders](#-renders) · [Hardware & Fasteners (BOM)](#-hardware--fasteners-bom) · [3D Printing Guidelines](#-3d-printing-guidelines) · [Assembly Guide](#-assembly-guide) · [Directory Structure](#-directory-structure) · [Onshape Source Model](#-onshape-source-model) · [Back to README](../README.md)
 
----
-
 ## ▸ Renders
 
 <p align="center">
@@ -19,16 +17,12 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
   <img src="./renders/render_back.png" width="48%" alt="Back Cover Render" />
 </p>
 
----
-
 ## ▸ Hardware & Fasteners (BOM)
 
 | Item | Quantity | Description | Notes |
 | :--- | :---: | :--- | :--- |
 | **M2 Screws** | 4 | M2 × 16mm (Pan head or Socket head) | Passes through the front cover into the back |
 | **M2 Hex Nuts** | 4 | Standard M2 hex nuts | Seated in the slots in the back shell |
-
----
 
 ## ▸ 3D Printing Guidelines
 
@@ -43,15 +37,11 @@ The case is a very easy print at around 50g and 13x8cm in size.
 | **Print Orientation** | Print both shells **flat-side down** directly on the build plate |
 | **Supports** | **None required!** Designed to print without any support material |
 
----
-
 ## ▸ Assembly Guide
 
 1. **Insert M2 Nuts:** Place the 4x M2 hex nuts into their designated pockets inside the back cover.
 2. **Mount PCB:** Place the assembled LoverBoy PCB into the front cover, close it with the rear cover.
 3. **Fasten:** Insert the 4x M2 × 16mm screws through the front cover corner holes and thread them into the M2 nuts in the back cover.
-
----
 
 ## ▸ Directory Structure
 
@@ -69,8 +59,6 @@ case/
     ├── render_front.png        # Front cover render
     └── render_back.png         # Back cover render
 ```
-
----
 
 ## ▸ Onshape Source Model
 

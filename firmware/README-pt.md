@@ -9,8 +9,6 @@ O firmware em C++ do LoverBoy (`firmware/LoverBoy/`) é organizado por responsab
 
 [Arquitetura](#-arquitetura) · [Recursos](#-recursos) · [Estrutura do Código](#-estrutura-do-código) · [Compilar e Gravar](#-compilar-e-gravar) · [Adicionando um Jogo](#-adicionando-um-jogo) · [Voltar ao README](../README-pt.md)
 
----
-
 ## ▸ Arquitetura
 
 `LoverBoyCore` é o orquestrador global de estado (Menu vs Jogo) e delega a gerenciadores especializados:
@@ -27,8 +25,6 @@ O firmware em C++ do LoverBoy (`firmware/LoverBoy/`) é organizado por responsab
 
 Novos jogos herdam da superclasse abstrata `Game`, que fornece a máquina de estados padrão e os métodos do padrão Template Method.
 
----
-
 ## ▸ Recursos
 
 - **Jogos inclusos:** Crossy, Flappy, Frogger, Genius, Snake e Tetris a ~60 FPS.
@@ -38,8 +34,6 @@ Novos jogos herdam da superclasse abstrata `Game`, que fornece a máquina de est
 - **Menu de configurações:** Volume, brilho da tela, tema de cores (5 paletas), idioma e reset de recordes. O estado de mudo persiste entre reinicializações, evitando o buzzer alto na inicialização.
 - **Interface multilíngue:** Inglês (padrão) e Português do Brasil. Todo texto da tela fica em uma única tabela (`i18n_strings.h`).
 - **Áudio não-bloqueante:** Melodias e efeitos rodam em uma máquina de estados sem congelar a lógica dos jogos.
-
----
 
 ## ▸ Estrutura do Código
 
@@ -77,11 +71,15 @@ firmware/
 
 As definições de pinos ficam em [`pins.h`](./LoverBoy/src/core/pins.h); o mapeamento correspondente na PCB está na [documentação da PCB](../pcb/README-pt.md#-pinagem--mapeamento-no-firmware).
 
----
-
 ## ▸ Compilar e Gravar
 
 Todos os três métodos usam o FQBN da placa `esp32:esp32:lilygo_t_display_s3`.
+
+### Pré-requisitos (Todas as Plataformas)
+
+1. **Suporte à placa:** Instale o pacote de placas **ESP32** (`esp32:esp32`) pelo Gerenciador de Placas ou `arduino-cli`.
+2. **Biblioteca da tela:** Instale a biblioteca **TFT_eSPI** de Bodmer.
+3. **Configuração da tela:** Em `TFT_eSPI/User_Setup_Select.h`, descomente `#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>`.
 
 ### Opção 1: Linux Nativo (`arduino-cli`)
 
@@ -99,10 +97,9 @@ arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmwa
 
 Ideal para desenvolvedores no Windows que preferem uma interface gráfica:
 
-1. **Suporte à placa:** Instale o suporte a placas **ESP32** pelo Gerenciador de Placas.
-2. **Bibliotecas:** Instale a biblioteca **TFT_eSPI** de Bodmer.
-3. **Configuração da tela:** Em `TFT_eSPI/User_Setup_Select.h`, descomente `#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>`.
-4. **Compilar e gravar:** Abra `firmware/LoverBoy/LoverBoy.ino`, selecione a placa **LilyGo T-Display-S3** e a porta `COMx` correspondente, e clique em **Carregar** (*Upload*).
+1. Abra `firmware/LoverBoy/LoverBoy.ino` na Arduino IDE.
+2. Selecione a placa **LilyGo T-Display-S3** e a porta `COMx` correspondente.
+3. Clique em **Carregar** (*Upload*).
 
 ### Opção 3: Terminal WSL (`build_and_upload.sh`)
 
@@ -121,8 +118,6 @@ Ideal para quem desenvolve dentro do terminal Linux do WSL no Windows. O script 
 | `-c`, `--cli <PATH>` | Binário do `arduino-cli` no WSL | detectado automaticamente |
 | `-e`, `--esptool <PATH>` | Caminho do `esptool.exe` no Windows | detectado automaticamente |
 | `-h`, `--help` | Mostra a ajuda e sai | |
-
----
 
 ## ▸ Adicionando um Jogo
 
