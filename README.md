@@ -1,150 +1,111 @@
-# 🎮 LoverBoy ![Status](https://img.shields.io/badge/status-in%20development-yellow) ![Platform](https://img.shields.io/badge/platform-ESP32--S3-blue) ![Framework](https://img.shields.io/badge/framework-Arduino-cyan)
+# LoverBoy
+
+[![Status: in development](https://img.shields.io/badge/status-in%20development-yellow.svg)](#02-features)
+[![Platform: ESP32-S3](https://img.shields.io/badge/platform-ESP32--S3-blue.svg)](#03-hardware)
+[![Framework: Arduino](https://img.shields.io/badge/framework-Arduino-00979D.svg)](#06-build--upload)
 
 > *A passion project.*
 
-[Versão em Português](./README-pt.md)
-
 ![LoverBoy logo](LoverBoy_logo.png)
 
-A portable arcade game console, inspired by the iconic "Game Boy", built from scratch using a LILYGO ESP32-S3, basic electronic components, and lots of programming! This is a personal educational project, originally developed using the materials and maker space at Colégio Técnico da UFMG (Coltec) and constantly evolving during my Computer Science undergraduate studies (DCC/UFMG).
+A portable arcade game console inspired by the Game Boy, built from scratch with a LILYGO ESP32-S3, basic electronic components, a custom PCB, a 3D-printed enclosure, and a modular C++ firmware with six games.
 
-## 🕹️ About the Project
+[Português](./README-pt.md) · [Why This Exists](#01-why-this-exists) · [Features](#02-features) · [Hardware](#03-hardware) · [PCB](#04-custom-pcb) · [Enclosure](#05-enclosure) · [Build & Upload](#06-build--upload) · [Structure](#07-project-structure) · [Author](#08-author)
 
-The goal of LoverBoy is to build a robust and modular hardware and software platform, developing practical skills in:
+---
 
-- **Software Architecture:** Creating an operating system organized by responsibilities, with abstract classes dictating the game lifecycle via the Template Method pattern.
-- **Low-Level Programming:** Direct interaction with GPIOs, timers (PWM), and microcontroller peripherals.
-- **Hardware Development:** Circuit assembly, soldering, component integration, and rechargeable battery power management for true portability.
-- **Modeling and 3D Printing:** Designing a custom ergonomic enclosure in Onshape and manufacturing it via FDM 3D printing.
+## 01. Why This Exists
 
-## ⚙️ Hardware Used
+LoverBoy is a personal educational project, started with the materials and maker space at Colégio Técnico da UFMG (Coltec) and still evolving through my Computer Science undergraduate studies (DCC/UFMG). It aims to build a robust, modular hardware and software platform while developing practical skills in:
 
-- **Development Board:** LILYGO T-Display ESP32-S3 (with integrated 1.9" 170x320 TFT display).
-- **Inputs:** 8 push buttons (D-Pad, Start, Select, A, B).
-- **Audio:** 1 Passive buzzer for playing melodies and sound effects.
-- **Power:** 3.7V rechargeable LiPo battery, managed by a TP4056 USB-C charging module and a slide switch.
-- **Custom PCB:** Single-layer through-hole carrier board designed in EasyEDA (see [`pcb/`](./pcb/)).
-- **Enclosure:** Custom two-piece 3D printed shell designed in Onshape (see [`case/`](./case/)).
+- **Software architecture:** An operating system organized by responsibility, with abstract classes driving the game lifecycle (Template Method pattern).
+- **Low-level programming:** Direct interaction with GPIOs, PWM timers, and microcontroller peripherals.
+- **Hardware development:** Circuit assembly, soldering, component integration, and rechargeable battery management.
+- **Modeling & 3D printing:** A custom ergonomic enclosure designed in Onshape and printed via FDM.
 
-## ✨ Firmware Features
+---
 
-The LoverBoy software was designed to be modular, scalable, and responsive.
+## 02. Features
 
-- **Included Games:** Currently features the classics Crossy, Flappy, Frogger, Genius, Snake, and Tetris, running smoothly at ~60 FPS.
-- **Persistent Highscore System:** The console has built-in Flash memory that saves the Top 3 for each game, including a classic arcade-style 3-initial input screen.
-- **In-Game Tutorials:** Every game features a dedicated tutorial screen accessible from a 3-option title carousel (Play, Tutorial, Highscores), detailing controls and objectives in both English and Brazilian Portuguese.
-- **Dynamic Settings Menu:** A dedicated system UI allows adjusting volume, changing screen brightness, and resetting records.
-- **Multi-language UI:** English (default) and Brazilian Portuguese, selectable in Settings. Every on-screen string lives in one table (`i18n_strings.h`), and accented letters are rendered on the retro pixel font by `TextRenderer`.
-- **Object-Oriented Architecture (OOP):** The system is orchestrated by a Core (`LoverBoyCore`) that delegates tasks to specific managers (`InputManager`, `MenuManager`, `BatteryManager`, `ConfigManager`, `SoundManager`). New games inherit from a `Game` superclass that provides the standard state machine and template methods.
-- **Non-Blocking Audio:** A sound system that plays background melodies and sound effects via a state machine, without freezing the game's physics or logic.
-- **Responsive Controls (`InputManager`):** Centralized button reading with asymmetric zero-latency press detection, continuous-LOW release qualification (preventing double clicks), DAS/ARR auto-repeat, and state-transition consumption.
+- **Six games:** Crossy, Flappy, Frogger, Genius, Snake, and Tetris at ~60 FPS with flicker-free delta rendering.
+- **Persistent highscores:** Top 3 per game saved to Flash, with an arcade-style 3-initial entry screen.
+- **In-game tutorials:** Controls and objectives for every game, reachable from the title carousel (Play, Tutorial, Highscores).
+- **Settings menu:** Volume, brightness, color theme (5 palettes), language, and highscore reset.
+- **Bilingual UI:** English (default) and Brazilian Portuguese, with accented letters on the retro pixel font.
+- **Non-blocking audio & responsive input:** State-machine melodies and debounced, auto-repeating controls that never stall game logic.
 
-## 📂 Code Structure
+See the [Firmware Architecture Guide](docs/FIRMWARE.md) for managers, code layout, and how to add a game.
 
-The project follows an organization that separates firmware responsibilities. 
+---
 
-```
-firmware/LoverBoy/
-|
-|-- LoverBoy.ino                      # Entry point: initializes system and runs loop
-|-- src/
-    |-- core/                       # Core system managers & hardware abstraction
-    |   |-- LoverBoyCore.h/.cpp       # Global state orchestrator (Menu vs Game)
-    |   |-- InputManager.h/.cpp     # Button debounce, edge detection, and auto-repeat
-    |   |-- BatteryManager.h/.cpp   # ADC read & piecewise battery percentage calculation
-    |   |-- ConfigManager.h/.cpp    # Centralized NVS configuration persistence
-    |   |-- SoundManager.h/.cpp     # Non-blocking audio queue & melody player
-    |   |-- pins.h                  # Hardware pin mappings for ESP32-S3 & display
-    |   |-- audio_assets.h          # Frequency library and game melody arrays
-    |
-    |-- games/                      # Game engine & playable games
-    |   |-- Game.h/.cpp             # Base abstract class with Template Method lifecycle
-    |   |-- CrossyGame.h/.cpp       # Crossy implementation
-    |   |-- FlappyGame.h/.cpp       # Flappy implementation
-    |   |-- FroggerGame.h/.cpp      # Frogger implementation
-    |   |-- GeniusGame.h/.cpp       # Simon/Genius implementation
-    |   |-- SnakeGame.h/.cpp        # Snake implementation
-    |   |-- TetrisGame.h/.cpp       # Tetris implementation
-    |
-    |-- ui/                         # User interface & visual presentation
-    |   |-- MenuManager.h/.cpp      # Splash screen, game carousel, settings, & HUD
-    |   |-- TextRenderer.h/.cpp     # UTF-8 text renderer with accent overlays
-    |   |-- Utf8Text.h/.cpp         # UTF-8 parsing and accent decomposition
-    |
-    |-- localization/               # Internationalization & translations
-        |-- Localization.h/.cpp     # Language selector and string lookup (tr())
-        |-- i18n_strings.h          # Central string table for all supported languages
-```
+## 03. Hardware
 
-## 🔌 Custom PCB & Electronics
+| Part | Details |
+|---|---|
+| **Board** | LILYGO T-Display ESP32-S3 (integrated 1.9" 170x320 TFT) |
+| **Inputs** | 8 push buttons (D-Pad, Start, Select, A, B) |
+| **Audio** | 1 passive buzzer for melodies and sound effects |
+| **Power** | 3.7V LiPo battery, TP4056 USB-C charging module, slide switch |
+| **PCB** | Single-layer through-hole carrier board designed in EasyEDA ([`pcb/`](pcb/)) |
+| **Enclosure** | Custom two-piece 3D-printed shell designed in Onshape ([`case/`](case/)) |
 
-LoverBoy uses a custom single-layer carrier board designed in EasyEDA that connects the LILYGO T-Display-S3, buttons, buzzer, power switch, and TP4056 charger. It is engineered with wide traces and clearances to support both in-house maker space fabrication (CNC milling / laser) and commercial PCB fabs.
+---
+
+## 04. Custom PCB
+
+A single-layer carrier board connects the T-Display-S3, buttons, buzzer, power switch, and TP4056 charger. Wide traces and clearances allow both in-house fabrication (CNC milling / laser) and commercial PCB fabs.
 
 <p align="center">
   <img src="pcb/EspBoy_PCB_Layout.png" width="48%" alt="LoverBoy PCB Layout" />
   <img src="pcb/EspBoy_Schematic.png" width="48%" alt="LoverBoy Schematic" />
 </p>
 
-- **Gerber Files:** Ready-to-order archive in [`pcb/gerbers/`](./pcb/gerbers/).
-- **Bill of Materials:** Component list with LCSC part numbers in [`pcb/EspBoy_BOM.csv`](./pcb/EspBoy_BOM.csv).
-- **EDA Source:** Editable EasyEDA schematic and layout files in [`pcb/source/`](./pcb/source/).
+Gerbers, BOM, EDA sources, pinout table, and fabrication parameters: **[PCB Documentation](pcb/README.md)**.
 
-For the full pinout table, fabrication parameters, and hardware notes, see the **[PCB Documentation](./pcb/README.md)**.
+---
 
-## 🖨️ Enclosure & 3D Printing
+## 05. Enclosure
 
-LoverBoy features a custom two-piece enclosure modeled in Onshape and engineered for FDM 3D printing without any support material.
+A two-piece enclosure modeled in Onshape and engineered for FDM printing without supports.
 
 <p align="center">
   <img src="case/renders/render_assembly.png" width="60%" alt="LoverBoy Case Assembly" />
 </p>
 
-- **Print Files:** Slicer-ready meshes in [`case/stl/`](./case/stl/).
-- **CAD Source:** Solid body STEP assembly in [`case/source/`](./case/source/) and live parametric project on [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
+STL meshes, STEP source, slicing settings, and assembly steps: **[Case Documentation](case/README.md)**. The live parametric model is on [Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770).
 
-For recommended slicing settings, print orientation, and step-by-step assembly, see the **[Case Documentation](./case/README.md)**.
+---
 
-## 🚀 How to Compile and Upload
+## 06. Build & Upload
 
-### Option 1: Native Linux (`arduino-cli`)
-Ideal for standalone Linux environments.
+Fastest path with `arduino-cli`:
 
-1. **Compile**:
-   ```bash
-   arduino-cli compile --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
-   ```
+```bash
+arduino-cli compile --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
+arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
+```
 
-2. **Upload**:
-   ```bash
-   arduino-cli upload -p /dev/ttyACM0 --fqbn esp32:esp32:lilygo_t_display_s3 firmware/LoverBoy
-   ```
-   *(Adjust `-p` with your device port).*
+On Windows (Arduino IDE) or WSL (`./build_and_upload.sh -p COM7`), see the **[Build & Upload Guide](docs/BUILDING.md)**.
 
-### Option 2: Native Windows (Arduino IDE)
-Ideal for Windows users who prefer a graphical interface.
+---
 
-1. **Board Support:** Install **ESP32** board support in the Arduino IDE Boards Manager.
-2. **Libraries:** Install the **TFT_eSPI** library by Bodmer.
-3. **Display Configuration:** In `TFT_eSPI/User_Setup_Select.h`, uncomment `#include <User_Setups/Setup206_LilyGo_T_Display_S3.h>`.
-4. **Compile & Upload:**
-   - Open `firmware/LoverBoy/LoverBoy.ino`.
-   - Select the **LilyGo T-Display-S3** board and the corresponding `COMx` port.
-   - Click **Upload**.
+## 07. Project Structure
 
-### Option 3: WSL Terminal (`build_and_upload.sh`)
-Ideal for developers working directly inside the WSL (Linux) terminal on Windows.
+```text
+loverboy/
+├── README.md / README-pt.md        # Project overview (English / Portuguese)
+├── LoverBoy_logo.png
+├── build_and_upload.sh             # WSL one-command build & flash script
+├── docs/
+│   ├── FIRMWARE.md / -pt.md        # Firmware architecture & code structure
+│   └── BUILDING.md / -pt.md        # Build & upload guide
+├── firmware/LoverBoy/              # Arduino sketch (core, games, ui, localization)
+├── pcb/                            # Gerbers, BOM, schematic, EasyEDA sources
+└── case/                           # STL meshes, STEP source, renders
+```
 
-1. **One-Command Build & Flash** (inside WSL terminal):
-   ```bash
-   ./build_and_upload.sh -p COM7
-   ```
-   *Customizable parameters & flags:*
-   - `-p, --port <PORT>`: Target serial port on Windows host (default: `COM7`).
-   - `-b, --baud <BAUD>`: Upload baud rate (default: `921600`).
-   - `-d, --dir <DIR>`: Custom firmware path (defaults to `firmware/LoverBoy`).
-   - `-c, --cli <PATH>`: Custom `arduino-cli` binary in WSL (auto-detected if omitted).
-   - `-e, --esptool <PATH>`: Custom `esptool.exe` path on Windows host (auto-detected if omitted).
+---
 
-## 👤 Author
+## 08. Author
 
-- **Vítor Paixão** - [https://github.com/paixonite](https://github.com/paixonite)
+- **[Vítor Paixão](https://github.com/paixonite)**

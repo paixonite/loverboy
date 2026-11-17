@@ -1,6 +1,6 @@
-# 🔌 LoverBoy - PCB Customizada & Eletrônica
+# LoverBoy - PCB Customizada & Eletrônica
 
-[English Version](./README.md)
+[English](./README.md) · [Visão Geral](#01-visão-geral) · [Layout da Placa & Esquemático](#02-layout-da-placa--esquemático) · [Lista de Materiais (BOM)](#03-lista-de-materiais-bom) · [Pinagem & Mapeamento no Firmware](#04-pinagem--mapeamento-no-firmware) · [Guia de Fabricação & Manufatura](#05-guia-de-fabricação--manufatura) · [Editando os Arquivos Fonte (EasyEDA)](#06-editando-os-arquivos-fonte-easyeda) · [Estrutura de Diretórios](#07-estrutura-de-diretórios) · [Voltar ao README](../README-pt.md)
 
 [![EDA](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue)](./source/)
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 📖 Visão Geral
+## 01. Visão Geral
 
 A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis estilo arcade (D-Pad, A, B, Start, Select), um buzzer passivo piezoelétrico, uma chave deslizante liga/desliga e um circuito de recarga LiPo USB-C TP4056 em uma única placa-mãe portátil.
 
@@ -20,7 +20,7 @@ A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis
 
 ---
 
-## 📸 Layout da Placa & Esquemático
+## 02. Layout da Placa & Esquemático
 
 <p align="center">
   <img src="./EspBoy_PCB_Layout.png" width="48%" alt="Layout da PCB LoverBoy" />
@@ -33,7 +33,7 @@ A **PCB do LoverBoy** integra a placa **LILYGO T-Display-S3**, 8 botões táteis
 
 ---
 
-## 🧾 Lista de Materiais (BOM)
+## 03. Lista de Materiais (BOM)
 
 A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
@@ -49,7 +49,7 @@ A planilha completa está disponível em [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
 ---
 
-## 📌 Pinagem & Mapeamento no Firmware
+## 04. Pinagem & Mapeamento no Firmware
 
 Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/LoverBoy/src/core/pins.h`](../firmware/LoverBoy/src/core/pins.h):
 
@@ -70,7 +70,7 @@ Todas as trilhas da PCB correspondem diretamente às definições em [`firmware/
 
 ---
 
-## 🏭 Guia de Fabricação & Manufatura
+## 05. Guia de Fabricação & Manufatura
 
 A placa foi desenhada com larguras de trilha e espaçamentos generosos para permitir tanto a **fabricação local em laboratório/makerspace** quanto a encomenda em **fábricas comerciais de PCB**, utilizando exatamente os mesmos arquivos.
 
@@ -96,7 +96,7 @@ Para encomendar placas industrializadas com máscara de solda, basta enviar o ar
 
 ---
 
-## 🛠️ Editando os Arquivos Fonte (EasyEDA)
+## 06. Editando os Arquivos Fonte (EasyEDA)
 
 Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./source/):
 - `source/SCH_EspBoy.json` — Arquivo do esquemático
@@ -109,7 +109,7 @@ Os arquivos editáveis do esquemático e layout estão na pasta [`source/`](./so
 
 ---
 
-## 📂 Estrutura de Diretórios
+## 07. Estrutura de Diretórios
 
 ```text
 pcb/

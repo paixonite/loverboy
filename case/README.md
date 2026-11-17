@@ -1,6 +1,6 @@
-# 🖨️ LoverBoy - Enclosure & 3D Printing
+# LoverBoy - Enclosure & 3D Printing
 
-[Versão em Português](./README-pt.md)
+[Português](./README-pt.md) · [Renders](#01-renders) · [Hardware & Fasteners (BOM)](#02-hardware--fasteners-bom) · [3D Printing Guidelines](#03-3d-printing-guidelines) · [Assembly Guide](#04-assembly-guide) · [Directory Structure](#05-directory-structure) · [Onshape Source Model](#06-onshape-source-model) · [Back to README](../README.md)
 
 [![Onshape](https://img.shields.io/badge/CAD-Onshape-blue?logo=onshape)](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)
 
@@ -10,7 +10,7 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
 
 ---
 
-## 📸 Renders
+## 01. Renders
 
 <p align="center">
   <img src="./renders/render_front.png" width="48%" alt="Front Cover Render" />
@@ -19,7 +19,7 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
 
 ---
 
-## 🔩 Hardware & Fasteners (BOM)
+## 02. Hardware & Fasteners (BOM)
 
 | Item | Quantity | Description | Notes |
 | :--- | :---: | :--- | :--- |
@@ -28,7 +28,7 @@ A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable g
 
 ---
 
-## ⚙️ 3D Printing Guidelines
+## 03. 3D Printing Guidelines
 
 The case is a very easy print at around 50g and 13x8cm in size.
 
@@ -43,7 +43,7 @@ The case is a very easy print at around 50g and 13x8cm in size.
 
 ---
 
-## 🛠️ Assembly Guide
+## 04. Assembly Guide
 
 1. **Insert M2 Nuts:** Place the 4x M2 hex nuts into their designated pockets inside the back cover.
 2. **Mount PCB:** Place the assembled LoverBoy PCB into the front cover, close it with the rear cover.
@@ -51,7 +51,7 @@ The case is a very easy print at around 50g and 13x8cm in size.
 
 ---
 
-## 📂 Directory Structure
+## 05. Directory Structure
 
 ```text
 case/
@@ -70,7 +70,7 @@ case/
 
 ---
 
-## 🌐 Onshape Source Model
+## 06. Onshape Source Model
 
 The master parametric CAD model is maintained on **Onshape**:
 - **Public Onshape Document:** [LoverBoy Case on Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)

@@ -1,6 +1,6 @@
-# 🖨️ LoverBoy - Carcaça & Impressão 3D
+# LoverBoy - Carcaça & Impressão 3D
 
-[English Version](./README.md)
+[English](./README.md) · [Renderizações](#01-renderizações) · [Parafusos & Ferragens (BOM)](#02-parafusos--ferragens-bom) · [Orientações de Impressão 3D](#03-orientações-de-impressão-3d) · [Guia de Montagem](#04-guia-de-montagem) · [Estrutura de Diretórios](#05-estrutura-de-diretórios) · [Modelo Paramétrico no Onshape](#06-modelo-paramétrico-no-onshape) · [Voltar ao README](../README-pt.md)
 
 [![Onshape](https://img.shields.io/badge/CAD-Onshape-blue?logo=onshape)](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)
 
@@ -10,7 +10,7 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
 
 ---
 
-## 📸 Renderizações
+## 01. Renderizações
 
 <p align="center">
   <img src="./renders/render_front.png" width="48%" alt="Render da Tampa Frontal" />
@@ -19,7 +19,7 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
 
 ---
 
-## 🔩 Parafusos & Ferragens (BOM)
+## 02. Parafusos & Ferragens (BOM)
 
 | Item | Quantidade | Descrição | Observações |
 | :--- | :---: | :--- | :--- |
@@ -28,7 +28,7 @@ Carcaça personalizada em duas partes modelada no Onshape para o console portát
 
 ---
 
-## ⚙️ Orientações de Impressão 3D
+## 03. Orientações de Impressão 3D
 
 A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões de aproximadamente 13x8cm.
 
@@ -43,7 +43,7 @@ A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões
 
 ---
 
-## 🛠️ Guia de Montagem
+## 04. Guia de Montagem
 
 1. **Inserir as Porcas M2:** Coloque as 4 porcas M2 nos seus alojamentos dentro da tampa traseira.
 2. **Posicionar a PCB:** Encaixe a PCB montada do LoverBoy na tampa frontal e feche com a tampa traseira.
@@ -51,7 +51,7 @@ A carcaça é uma impressão muito fácil, pesando cerca de 50g e com dimensões
 
 ---
 
-## 📂 Estrutura de Diretórios
+## 05. Estrutura de Diretórios
 
 ```text
 case/
@@ -70,7 +70,7 @@ case/
 
 ---
 
-## 🌐 Modelo Paramétrico no Onshape
+## 06. Modelo Paramétrico no Onshape
 
 O modelo paramétrico original é mantido no **Onshape**:
 - **Link Público no Onshape:** [LoverBoy Case no Onshape](https://cad.onshape.com/documents/1e7a1e5f646915cc7623cce0/w/f956c9933d51415f8580a5c6/e/0af3083584b46a6f4c513a5e?renderMode=0&uiState=6ae2d81bf7dd7a478c9b1770)

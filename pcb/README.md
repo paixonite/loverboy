@@ -1,6 +1,6 @@
-# 🔌 LoverBoy - Custom PCB & Electronics
+# LoverBoy - Custom PCB & Electronics
 
-[Versão em Português](./README-pt.md)
+[Português](./README-pt.md) · [Overview](#01-overview) · [Board Layout & Schematic](#02-board-layout--schematic) · [Bill of Materials (BOM)](#03-bill-of-materials-bom) · [Pinout & Firmware Mapping](#04-pinout--firmware-mapping) · [Manufacturing & Fabrication Guide](#05-manufacturing--fabrication-guide) · [Editing the Source Files (EasyEDA)](#06-editing-the-source-files-easyeda) · [Directory Structure](#07-directory-structure) · [Back to README](../README.md)
 
 [![EDA](https://img.shields.io/badge/EDA-EasyEDA%20v6.5-blue)](./source/)
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 📖 Overview
+## 01. Overview
 
 The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade buttons (D-Pad, A, B, Start, Select), a passive piezo buzzer, a power slide switch, and a TP4056 USB-C LiPo charging circuit onto a single handheld carrier board.
 
@@ -20,7 +20,7 @@ The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade bu
 
 ---
 
-## 📸 Board Layout & Schematic
+## 02. Board Layout & Schematic
 
 <p align="center">
   <img src="./EspBoy_PCB_Layout.png" width="48%" alt="LoverBoy PCB Layout" />
@@ -33,7 +33,7 @@ The **LoverBoy PCB** integrates the **LILYGO T-Display-S3**, 8 tactile arcade bu
 
 ---
 
-## 🧾 Bill of Materials (BOM)
+## 03. Bill of Materials (BOM)
 
 The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
@@ -49,7 +49,7 @@ The full spreadsheet is available in [`EspBoy_BOM.csv`](./EspBoy_BOM.csv).
 
 ---
 
-## 📌 Pinout & Firmware Mapping
+## 04. Pinout & Firmware Mapping
 
 All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/pins.h`](../firmware/LoverBoy/src/core/pins.h):
 
@@ -70,7 +70,7 @@ All PCB traces map directly to the definitions in [`firmware/LoverBoy/src/core/p
 
 ---
 
-## 🏭 Manufacturing & Fabrication Guide
+## 05. Manufacturing & Fabrication Guide
 
 The board was designed with generous trace widths and clearances so it can be produced either **in-house at a maker space** or ordered from a **commercial PCB fab house** using the exact same files.
 
@@ -96,7 +96,7 @@ To order professionally fabricated boards with solder mask, upload [`gerbers/Ger
 
 ---
 
-## 🛠️ Editing the Source Files (EasyEDA)
+## 06. Editing the Source Files (EasyEDA)
 
 The editable schematic and PCB layout live in [`source/`](./source/):
 - `source/SCH_EspBoy.json` — Schematic file
@@ -109,7 +109,7 @@ The editable schematic and PCB layout live in [`source/`](./source/):
 
 ---
 
-## 📂 Directory Structure
+## 07. Directory Structure
 
 ```text
 pcb/
