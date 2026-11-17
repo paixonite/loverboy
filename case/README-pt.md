@@ -8,8 +8,6 @@
 
 Carcaça personalizada em duas partes modelada no Onshape para o console portátil **LoverBoy**. Ela acomoda a PCB customizada, a placa LILYGO T-Display-S3, os botões táteis (push buttons), o buzzer, a chave liga/desliga, o módulo de carregamento USB-C TP4056 e a bateria recarregável LiPo em um formato portátil retro e ergonômico.
 
-[Renderizações](#-renderizações) · [Parafusos & Ferragens (BOM)](#-parafusos--ferragens-bom) · [Orientações de Impressão 3D](#-orientações-de-impressão-3d) · [Guia de Montagem](#-guia-de-montagem) · [Estrutura de Diretórios](#-estrutura-de-diretórios) · [Modelo Paramétrico no Onshape](#-modelo-paramétrico-no-onshape) · [Voltar ao README](../README-pt.md)
-
 ## ▸ Renderizações
 
 <p align="center">

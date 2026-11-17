@@ -12,8 +12,6 @@
 
 Um console portátil estilo arcade inspirado no Game Boy, construído do zero com uma LILYGO ESP32-S3, componentes eletrônicos básicos, uma PCB customizada, uma carcaça impressa em 3D e um firmware C++ modular com seis jogos.
 
-[Por que existe](#-por-que-existe) · [Recursos](#-recursos) · [Hardware](#-hardware) · [PCB](#-pcb-customizada) · [Carcaça](#-carcaça) · [Compilar e Gravar](#-compilar-e-gravar) · [Estrutura](#-estrutura-do-projeto) · [Autor](#-autor)
-
 ## ▸ Por que existe
 
 O LoverBoy é um projeto pessoal e educacional, iniciado com os recursos e o espaço maker do Colégio Técnico da UFMG (Coltec) e em constante evolução durante minha graduação em Ciência da Computação (DCC/UFMG). O objetivo é criar uma plataforma modular e robusta de hardware e software, desenvolvendo habilidades práticas em:

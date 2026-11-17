@@ -8,8 +8,6 @@
 
 A custom two-piece enclosure designed in Onshape for the **LoverBoy** portable game console. It holds the custom PCB, LILYGO T-Display-S3, tactile push buttons, buzzer, power slide switch, TP4056 USB-C charging board, and rechargeable LiPo battery into an ergonomic retro handheld form factor.
 
-[Renders](#-renders) · [Hardware & Fasteners (BOM)](#-hardware--fasteners-bom) · [3D Printing Guidelines](#-3d-printing-guidelines) · [Assembly Guide](#-assembly-guide) · [Directory Structure](#-directory-structure) · [Onshape Source Model](#-onshape-source-model) · [Back to README](../README.md)
-
 ## ▸ Renders
 
 <p align="center">

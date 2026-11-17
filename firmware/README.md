@@ -7,8 +7,6 @@
 
 LoverBoy's C++ firmware (`firmware/LoverBoy/`) is organized by responsibility: a core orchestrator delegates to focused managers, and every game inherits a common lifecycle from an abstract base class.
 
-[Architecture](#-architecture) · [Features](#-features) · [Code Structure](#-code-structure) · [Build & Upload](#-build--upload) · [Adding a Game](#-adding-a-game) · [Back to README](../README.md)
-
 ## ▸ Architecture
 
 `LoverBoyCore` is the global state orchestrator (Menu vs Game) and delegates to specialized managers:

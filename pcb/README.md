@@ -6,8 +6,6 @@
 
 A single-layer through-hole carrier board designed in EasyEDA that connects the LILYGO T-Display-S3, buttons, buzzer, power switch, and TP4056 USB-C charger.
 
-[Overview](#-overview) · [Board Layout & Schematic](#-board-layout--schematic) · [Bill of Materials (BOM)](#-bill-of-materials-bom) · [Pinout & Firmware Mapping](#-pinout--firmware-mapping) · [Manufacturing & Fabrication Guide](#-manufacturing--fabrication-guide) · [Editing the Source Files (EasyEDA)](#-editing-the-source-files-easyeda) · [Directory Structure](#-directory-structure) · [Back to README](../README.md)
-
 > [!WARNING]
 > **Hardware Rev 1.0 Errata (Known Issues):**
 > The current `v1.0` board files in this folder contain two known hardware errata that are scheduled to be fixed in the upcoming **v2.0 PCB redesign**:

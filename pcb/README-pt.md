@@ -6,8 +6,6 @@
 
 Placa-mãe through-hole de camada única projetada no EasyEDA que integra a LILYGO T-Display-S3, botões, buzzer, chave liga/desliga e carregador TP4056 USB-C.
 
-[Visão Geral](#-visão-geral) · [Layout da Placa & Esquemático](#-layout-da-placa--esquemático) · [Lista de Materiais (BOM)](#-lista-de-materiais-bom) · [Pinagem & Mapeamento no Firmware](#-pinagem--mapeamento-no-firmware) · [Guia de Fabricação & Manufatura](#-guia-de-fabricação--manufatura) · [Editando os Arquivos Fonte (EasyEDA)](#-editando-os-arquivos-fonte-easyeda) · [Estrutura de Diretórios](#-estrutura-de-diretórios) · [Voltar ao README](../README-pt.md)
-
 > [!WARNING]
 > **Errata da Revisão 1.0 de Hardware (Problemas Conhecidos):**
 > Os arquivos atuais da placa `v1.0` nesta pasta possuem duas erratas de hardware conhecidas que serão corrigidas no **redesign da PCB v2.0**:

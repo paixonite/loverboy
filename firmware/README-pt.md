@@ -7,8 +7,6 @@
 
 O firmware em C++ do LoverBoy (`firmware/LoverBoy/`) é organizado por responsabilidade: um orquestrador central delega a gerenciadores especializados, e todo jogo herda um ciclo de vida comum de uma classe base abstrata.
 
-[Arquitetura](#-arquitetura) · [Recursos](#-recursos) · [Estrutura do Código](#-estrutura-do-código) · [Compilar e Gravar](#-compilar-e-gravar) · [Adicionando um Jogo](#-adicionando-um-jogo) · [Voltar ao README](../README-pt.md)
-
 ## ▸ Arquitetura
 
 `LoverBoyCore` é o orquestrador global de estado (Menu vs Jogo) e delega a gerenciadores especializados:
